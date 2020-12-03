@@ -1,0 +1,184 @@
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="loading">
+    <div class="loader">
+        <div class="m-t-30">
+            <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>
+                    Dashboard
+                    <small class="text-muted">Welcome to Ischedulenow</small>
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item active">
+                        <a routerLink="/doctor/dashboard">
+                            <i class="zmdi zmdi-home"></i> Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            <strong>All</strong> Bills</h2>
+                    </div>
+                    <div class="body">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Patients</th>
+                                    <th>Appointment Id</th>
+                                    <th>Appointment Day</th>
+
+                                    <th>Status</th>
+                                    <th>View</th>
+
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let appointment of allAppointments; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>
+                                        <img *ngIf="appointment.patient_id.profilePicPath!='' && appointment.patient_id.profilePicPath!=null" src="{{appointment.patient_id.profilePicPath}}"
+                                            class="rounded-circle width30 m-r-15" alt="profile-image" />
+
+                                        <img *ngIf="appointment.patient_id.profilePicPath=='' || appointment.patient_id.profilePicPath==null" src=" assets/images/xs/avatar.jpg
+                                           " class="rounded-circle width30 m-r-15" alt="profile-image" />
+                                        <span style="cursor:pointer" (click)="viewProfile(appointment.patient_id._id)">{{ appointment.patient_id.firstName }} {{ appointment.patient_id.lastName }}</span>
+                                    </td>
+
+
+                                    <td>{{ appointment.appointment_id._id }}
+                                    </td>
+
+                                    <td>{{ appointment.appointment_id.appointmentForDate | date }} &nbsp;{{ appointment.appointment_id.appointmentForTime
+                                        }}
+                                    </td>
+
+
+
+                                    <td>{{appointment.status}}</td>
+                                    <td>
+                                        <button data-toggle="modal" data-target="#view-invoice" (click)="viewInvoice(appointment)" class="btn btn-icon  btn-icon-mini btn-neutral"
+                                            title="View Invoice">
+                                            <i class="material-icons">remove_red_eye</i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+
+
+
+
+</section>
+
+<!-- View-invoice Start -->
+<div class="modal fade" id="view-invoice" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="title" id="largeModalLabel">View Invoice</h4>
+            </div>
+            <div class="modal-body" *ngIf="(invoiceDetail | json) == '{}'">
+                No Invoice
+
+            </div>
+            <div class="modal-body" *ngIf="(invoiceDetail | json) != '{}'">
+
+                <div class="row pt20">
+                    <div class="col-sm-4">
+                        <b>Total amount to pay :</b> ${{getInvoiceCost(invoiceDetail)}}</div>
+                    <div class="col-sm-4">
+                        <b> Due Date :</b> {{invoiceDetail.dueDate | date}}</div>
+                    <div class="col-sm-4">
+                        <b>Status : </b>
+                        <span class="badge bg-orange">{{invoiceDetail.status}}</span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Description</th>
+                                        <th>Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let billItem of invoiceDetail.billItems;let i=index;">
+                                        <td>{{(i+1)}}</td>
+                                        <td> {{billItem.description}} </td>
+                                        <td>${{billItem.cost}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Note</h5>
+                        <p>{{invoiceDetail.notes}}</p>
+                    </div>
+
+                    <div class="col-md-6 text-right">
+                        <p>
+                            <b>Sub-total:</b> ${{getInvoiceSubTotal(invoiceDetail)}}</p>
+                        <p>Discount: {{invoiceDetail.discount}}%</p>
+                        <p>VAT: {{invoiceDetail.tax}}%</p>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+
+                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- View-invoice end -->

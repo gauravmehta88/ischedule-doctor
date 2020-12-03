@@ -1,0 +1,198 @@
+<!-- Main Content -->
+<!-- Page Loader -->
+
+<body>
+  <toaster-container [toasterconfig]="config"></toaster-container>
+  <div class="page-loader-wrapper" *ngIf="loading">
+    <div class="loader">
+      <div class="m-t-30">
+        <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+      </div>
+      <p>Please wait....</p>
+    </div>
+  </div>
+  <!-- Overlay For Sidebars -->
+  <div class="overlay" *ngIf="false"></div>
+  <app-top-bar></app-top-bar>
+  <app-side-bar></app-side-bar>
+
+  <!-- Main Content -->
+
+  <section class="content">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <h2>Coupons
+            <small class="text-muted">Welcome to Ischedulenow</small>
+          </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <ul class="breadcrumb float-md-right">
+            <li class="breadcrumb-item">
+              <a routerLink="/doctor/dashboard">
+                <i class="zmdi zmdi-home"></i> Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="javascript:void(0);">Coupons</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row clearfix">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="header">
+              <h2>Add New Coupons</h2>
+            </div>
+            <div class="body">
+              <div class="row clearfix">
+
+                <div class="col-sm-4">
+                  <label>Coupons Title</label>
+                  <div class="form-group">
+                    <input type="text" [(ngModel)]="title" class="form-control" placeholder="Coupons Title">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Price of Coupons</label>
+                  <div class="form-group">
+                    <input type="number" class="form-control" [(ngModel)]="price" placeholder="Price of Coupons">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Discounted Value</label>
+                  <div class="form-group">
+                    <input type="number" class="form-control" [(ngModel)]="discountedValue" placeholder="Discounted Value">
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="col-sm-12">
+                  <label>Coupons Description</label>
+                  <div class="form-group">
+                    <textarea rows="3" [(ngModel)]="description" class="form-control no-resize" placeholder="Enter Description"></textarea>
+                  </div>
+
+
+                </div>
+                <div class="col-sm-12">
+                  <label>Address</label>
+                  <div class="form-group ">
+                    <textarea rows="2" [(ngModel)]="address" class="form-control no-resize" placeholder="Address"></textarea>
+                  </div>
+
+
+                </div>
+
+                <div class="col-sm-4">
+                  <label>Valid From</label>
+                  <div class="form-group ">
+
+                    <input type="text" class="form-control" placeholder="Valid From" (bsValueChange)="onDateValueChangeEventFrom($event)" [(ngModel)]="valid_from"
+                      bsDatepicker [minDate]="minDate" />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <label>Valid Till</label>
+                  <div class="form-group">
+
+                    <input type="text" class="form-control" placeholder="Valid Till" (bsValueChange)="onDateValueChangeEventTo($event)" [(ngModel)]="valid_till"
+                      bsDatepicker [minDate]="minDate" />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group m-t-5">
+                    <select class="form-control show-tick" [(ngModel)]="couponCategory" id="drpdownCat">
+                      <option value="">--Select Category--</option>
+                      <option value="{{ category._id }}" *ngFor="let category of coupenCategories">{{ category.title }}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4" *ngIf="coupenCategories.length==0">
+                  <div class="form-group m-t-5">
+                    <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#catAdd">
+                      Add Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <form id="frmFileUpload" (click)="uploadDocumentArray()" class="dropzone" method="post" enctype="multipart/form-data">
+                    <div class="dz-message">
+                      <div class="drag-icon-cph">
+                        <i class="material-icons">touch_app</i>
+                      </div>
+                      <h3>Drop files here or click to upload.</h3>
+                      <em>(This is just a demo dropzone. Selected files are
+                        <strong>not</strong> actually uploaded.)</em>
+                    </div>
+
+                  </form>
+                  <span *ngFor="let cname of cNames">
+                    <a href="{{cname.url}}" target="_blank"> {{cname.filename}}</a>
+                    &nbsp; &nbsp;
+                  </span>
+                </div>
+
+
+
+
+
+                <div class="col-sm-12 m-t-30" *ngIf="!isEdit">
+                  <button type="button" (click)="saveCoupen()" class="btn btn-round btn-primary waves-effect">Submit</button>
+                </div>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+</body>
+<div class="modal fade " id="catAdd" tabindex="-1 " role="dialog ">
+  <div class="modal-dialog modal-md " role="document ">
+    <div class="modal-content ">
+      <div class="modal-header ">
+        <h4 class="title " id="largeModalLabel ">Add Coupon Category</h4>
+      </div>
+      <div class="modal-body ">
+        <div class="body ">
+          <div class="row clearfix ">
+            <div class="col-sm-12 ">
+              Title
+              <div class="input-group ">
+
+                <input type="text" class="form-control   " [(ngModel)]="Cattitle" placeholder="title... ">
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+        <div class="modal-footer ">
+          <button type="button " (click)="saveCoupenCategory()" class="btn btn-success waves-effect ">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

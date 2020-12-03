@@ -1,0 +1,343 @@
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="loading">
+    <div class="loader">
+        <div class="m-t-30">
+            <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>
+                    Dashboard
+                    <small class="text-muted">Welcome to Ischedulenow</small>
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item active">
+                        <a routerLink="/doctor/dashboard">
+                            <i class="zmdi zmdi-home"></i> Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- card dashboard start -->
+        <div class="row clearfix">
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/allAppointments">
+                    <div class="card info-box-2 g-bg-cyan">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">event_note</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">All Appointments</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/todaysAppointments">
+                    <div class="card info-box-2 g-bg-cyan">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">event_note</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Today Appointment</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/bookAppointment">
+                    <div class="card info-box-2 g-bg-blue">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">event</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Book Appointment</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/schedule">
+                    <div class="card info-box-2 g-bg-gy">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">alarm</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Add Doctor Schedule</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/doctorSchedule">
+                    <div class="card info-box-2 g-bg-cgreen">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">date_range</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Calendar View</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/addPatient">
+                    <div class="card info-box-2 g-bg-blush2">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">person_add</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Add Patient</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/searchPatient">
+                    <div class="card info-box-2 g-bg-soundcloud">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">search</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Search Patient</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/chat">
+                    <div class="card info-box-2 g-bg-soundcloud2">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">chat</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Chat</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/allBills">
+                    <div class="card info-box-2 l-parpl">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">receipt</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Billing</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/doctorProfile">
+                    <div class="card info-box-2 l-turquoise">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">account_box</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Doctor Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!--<div class="col-lg-3 col-md-6 col-sm-12">
+			<a routerLink="/doctor/doctorProfile">	
+                <div class="card info-box-2 l-cyan">
+                    <div class="body">
+                        <div class="icon col-12"> 
+						<div class="demo-google-material-icon "> <i class="material-icons dashboard-icons">group</i></div>
+                        </div>
+                        <div class="content col-12">                         
+                            <div class="number text-white">Staff</div>
+                        </div>
+                    </div>
+                </div>
+				</a>
+            </div>-->
+
+
+
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/addCoupen">
+                    <div class="card info-box-2 l-slategray">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">add_circle</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Add Coupons</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/allCoupens">
+                    <div class="card info-box-2 l-coral">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">border_clear</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">All Coupons</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a routerLink="/doctor/approveDisapprove">
+                    <div class="card info-box-2 l-green">
+                        <div class="body">
+                            <div class="icon col-12">
+                                <div class="demo-google-material-icon ">
+                                    <i class="material-icons dashboard-icons">check_circle</i>
+                                </div>
+                            </div>
+                            <div class="content col-12">
+                                <div class="number text-white">Approve/ Disapprove Appointment</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!--<div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card info-box-2 l-salmon">
+                    <div class="body">
+                        <div class="icon col-12"> 
+						<div class="demo-google-material-icon "> <i class="material-icons dashboard-icons">date_range</i></div>
+                        </div>
+                        <div class="content col-12">                         
+                            <div class="number text-white">Notes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card info-box-2 l-blue">
+                    <div class="body">
+                        <div class="icon col-12"> 
+						<div class="demo-google-material-icon "> <i class="material-icons dashboard-icons">date_range</i></div>
+                        </div>
+                        <div class="content col-12">                         
+                            <div class="number text-white">Add Coupons category</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			
+				<div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card info-box-2 l-seagreen">
+                    <div class="body">
+                        <div class="icon col-12"> 
+						<div class="demo-google-material-icon "> <i class="material-icons dashboard-icons">date_range</i></div>
+                        </div>
+                        <div class="content col-12">                         
+                            <div class="number text-white">Settings</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+				<div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card info-box-2 l-amber">
+                    <div class="body">
+                        <div class="icon col-12"> 
+						<div class="demo-google-material-icon "> <i class="material-icons dashboard-icons">date_range</i></div>
+                        </div>
+                        <div class="content col-12">                         
+                            <div class="number text-white">Notes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			l-blush 
+l-parpl 
+l-slategray 
+			-->
+        </div>
+        <!-- card dashboard end -->
+
+
+
+
+
+    </div>
+</section>

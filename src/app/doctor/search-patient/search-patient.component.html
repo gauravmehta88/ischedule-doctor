@@ -1,0 +1,189 @@
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="loading">
+  <div class="loader">
+    <div class="m-t-30">
+      <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+<section class="content">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>
+          Search patients
+          <small class="text-muted">Search by any keyword</small>
+        </h2>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12">
+        <ul class="breadcrumb float-md-right">
+          <li class="breadcrumb-item">
+            <a routerLink="/doctor/dashboard">
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Search Patient</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <!-- Exportable Table -->
+    <div class="row clearfix">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Patient</strong> Search</h2>
+          </div>
+          <div class="body">
+            <table id="tblData" class="table table-bordered table-striped table-hover dataTable js-exportable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Patient Name</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Profile</th>
+
+
+
+                  <!-- <th>Delete</th> -->
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let patient of allPatients; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    <img *ngIf="patient.profilePicPath!='' && patient.profilePicPath!=null" src="{{patient.profilePicPath}}" class="rounded-circle width30 m-r-15"
+                      alt="profile-image" />
+
+                    <img *ngIf="patient.profilePicPath=='' || patient.profilePicPath==null" src=" assets/images/xs/avatar.jpg
+                      " class="rounded-circle width30 m-r-15 " alt="profile-image " />
+                    <span>{{ patient.firstName }} &nbsp;{{ patient.lastName }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="text-info">{{ patient.email }}</span>
+
+                  </td>
+                  <td>
+                    <span class="text-info">{{ patient.address }}</span>
+                  </td>
+
+                  <td>
+                    <span class="badge badge-success" style="cursor:pointer" (click)="viewProfile(patient._id)">View </span>
+                  </td>
+
+
+                  <!-- 
+                  <td (click)="deletePatient(patient._id)">
+                    <span class="badge badge-danger" style="cursor:pointer">Delete</span>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #END# Exportable Table -->
+  </div>
+</section>
+
+<!-- old -->
+<div class="modal fade" id="add-appointment-with-old" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="title" id="largeModalLabel">
+          You are booking Appointment for Jhon.
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="body">
+          <div class="row clearfix">
+            <div class="col-sm-4">
+              <select class="form-control show-tick mt0">
+                <option value="">- Select Doctor -</option>
+                <option>Dr. Balwinder</option>
+                <option>Dr. Gurmatpal Singh</option>
+                <option>Dr. Kumar</option>
+                <option>Dr. Modi</option>
+              </select>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <select class="form-control show-tick mt0">
+                  <option value="">- Select date -</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <select class="form-control show-tick mt0">
+                  <option value="">- Select slot -</option>
+                  <option>12:40</option>
+                  <option>02:10</option>
+                  <option>2:40</option>
+                  <option>3:20</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-round waves-effect">
+          Add Appointment
+        </button>
+        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">
+          CLOSE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- old -->
+
+<!-- red-->
+<div class="modal fade" id="cancel-appointment" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-red">
+      <div class="modal-header">
+        <h4 class="title" id="defaultModalLabel">
+          Are you sure to cancel this appointment
+        </h4>
+      </div>
+      <div class="modal-body col-white">
+        Appointment with Dr. Balwinder on 26-1-2019 Monday at 1:26pm.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link waves-effect col-white">
+          Yes
+        </button>
+        <button type="button" class="btn btn-link waves-effect col-white" data-dismiss="modal">
+          CLOSE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- red end-->

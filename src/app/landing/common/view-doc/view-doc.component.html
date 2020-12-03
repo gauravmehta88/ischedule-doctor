@@ -1,0 +1,94 @@
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="loading">
+  <div class="loader">
+    <div class="m-t-30">
+      <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+
+<section class="">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>Document Detail
+          <small class="text-muted">Welcome to IScheduleNow</small>
+        </h2>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12">
+        <ul class="breadcrumb float-md-right">
+          <li class="breadcrumb-item">
+           <a routerLink="/doctor/dashboard">	
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="javascript:void(0);">Document</a>
+          </li>
+          <li class="breadcrumb-item active">Document Detail</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-8 col-md-12">
+        <div class="card property_list">
+          <div class="body">
+            <div class="property-content">
+              <div class="detail">
+                <h3 class="m-t-0 m-b-0">{{doc.docType}}</h3>
+                <p class="text-muted m-b-0">{{doc.title }}</p>
+                <p class="text-muted m-b-0">{{doc.description}}</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body pa20">
+            <div class="row">
+              <div class="col-md-2">
+                <img src="{{doc.patient_id?.profilePicPath}}" class="img img-rounded img-fluid" />
+
+              </div>
+              <div class="col-md-10">
+
+                <h5 class="float-left mr20 pa0 ma0">{{doc.patient_id?.firstName}} &nbsp; {{doc.patient_id?.lastName}}</h5>
+                <br>
+                <div class="clearfix"></div>
+
+                <span class="float-left ml10"> {{doc.patient_id?.email}}</span>
+
+
+
+
+                <a href="{{doc.url}}" target="_blank" class="float-right btn text-white btn-danger">
+                  <i class="fa fa-document"></i> View Document</a>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+</section>

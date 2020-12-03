@@ -1,0 +1,106 @@
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<body class="theme-cyan authentication sidebar-collapse">
+  <div class="page-loader-wrapper" *ngIf="loading">
+    <div class="loader">
+      <div class="m-t-30">
+        <img class="zmdi-hc-spin" src="/assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+      </div>
+      <p>Please wait...</p>
+    </div>
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
+    <div class="container">
+      <div class="navbar-translate n_logo">
+        <a class="navbar-brand" href="#" title="" target="_blank">Ischedulenow</a>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" title="Follow us on Twitter" href="#" target="_blank">
+              <i class="zmdi zmdi-twitter"></i>
+              <p class="d-lg-none d-xl-none">Twitter</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" title="Like us on Facebook" href="#" target="_blank">
+              <i class="zmdi zmdi-facebook"></i>
+              <p class="d-lg-none d-xl-none">Facebook</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary btn-round" routerLink="/patientsignup" href="javascript:void();" (click)="toggleNavbar()">SIGN UP</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- End Navbar -->
+  <div class="page-header">
+    <div class="page-header-image" style="background-image:url(assets/images/login.jpg)"></div>
+    <div class="container">
+      <div class="col-md-12 content-center">
+        <div class="card-plain">
+          <form class="form" [formGroup]="LoginForm">
+            <div class="header">
+              <div class="logo-container">
+                <img src="assets/images/logo.png" alt="" />
+              </div>
+              <h5>Log in</h5>
+            </div>
+            <div class="content">
+              <div class="input-group input-lg">
+                <input type="text" class="form-control" placeholder="Enter Email/ Mobile No." (keyup)="makeLowerCase()" formControlName="username"
+                />
+                <span class="input-group-addon">
+                  <i class="zmdi zmdi-account-circle"></i>
+                </span>
+              </div>
+              <div class="error" *ngIf="
+                  (!userNamevalidation ||
+                    LoginForm.controls.username.dirty ||
+                    LoginForm.controls.username.touched) &&
+                  !LoginForm.controls.username.valid
+                ">
+                *Required
+              </div>
+              <div class="input-group input-lg">
+                <input type="password" placeholder="*******" class="form-control" formControlName="password" />
+                <span class="input-group-addon">
+                  <i class="zmdi zmdi-lock"></i>
+                </span>
+              </div>
+
+              <div class="error" *ngIf="
+                  !passwordvalidation && !LoginForm.controls.password.valid
+                ">
+                * password required
+              </div>
+            </div>
+            <div class="footer text-center">
+              <a href="javascript:void();" (click)="signIn()" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">SIGN IN</a>
+              <h6 class="m-t-20">
+                <a href="javascript:void();" routerLink="/patientforgotPassword" class="link">Forgot Password?</a>
+              </h6>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <app-footer></app-footer>
+    <!-- footer -->
+  </div>
+</body>

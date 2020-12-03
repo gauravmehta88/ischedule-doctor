@@ -1,0 +1,128 @@
+<!-- Main Content -->
+<!-- Page Loader -->
+
+<body>
+  <toaster-container [toasterconfig]="config"></toaster-container>
+
+  <div class="page-loader-wrapper" *ngIf="loading">
+    <div class="loader">
+      <div class="m-t-30">
+        <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+      </div>
+      <p>Please wait....</p>
+    </div>
+  </div>
+
+  <!-- Overlay For Sidebars -->
+  <div class="overlay" *ngIf="false"></div>
+  <app-top-bar></app-top-bar>
+  <app-side-bar></app-side-bar>
+
+  <!-- Main Content -->
+
+  <section class="content">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <h2>Coupons
+            <small class="text-muted">Welcome to Ischedulenow</small>
+          </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <ul class="breadcrumb float-md-right">
+             <li class="breadcrumb-item">
+           <a routerLink="/doctor/dashboard">	
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+            <li class="breadcrumb-item">
+              <a href="javascript:void(0);">Coupons</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="row clearfix">
+
+        <div class="col-sm-3">
+          <div class="form-group m-t-5">
+            <input type="text" class="form-control" [(ngModel)]="keyword" placeholder="Enter Keyword">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <button type="button" (click)="search()" class="btn btn-round btn-primary waves-effect">Search</button>
+        </div>
+        </div>
+<div class="row clearfix mt20">
+
+        <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let coupen of allCoupens">
+          <div class="card property_list">
+            <div class="property_image">
+              <a href="javascript:void();">
+                <img class="img-responsive coupon-img" src="{{coupen.images[0]}}" alt="img">
+              </a>
+              <span class="badge badge-danger">{{getDiscountPercnt(coupen)}}% discount</span>
+            </div>
+            <div class="col-lg-12 mt15 mb15">
+              <div class="property-content">
+                <div class="detail">
+
+                  <h4 class="m-t-0 m-b-5">
+                    <a href="javascript:void();">{{coupen.title}}</a>
+                  </h4>
+
+                  <!-- <span class="fs11">4.3</span>
+                  <span class="fa fa-star" id="star1" onclick="add(this,1)"></span>
+                  <span class="fa fa-star" id="star2" onclick="add(this,2)"></span>
+                  <span class="fa fa-star" id="star3" onclick="add(this,3)"></span>
+                  <span class="fa fa-star" id="star4" onclick="add(this,4)"></span>
+                  <span class="fa fa-star" id="star5" onclick="add(this,5)"></span>
+                  <span class="fs11">(30)</span> -->
+
+
+                  <h4 class="col-blue-grey m-t-0 m-b-5">
+                    <del>${{coupen.value}}</del> 
+                    <span class="text-success"> ${{coupen.discountedValue}}</span>
+                  </h4>
+
+
+
+
+
+                  <p class="text-muted mb5 fs13 one-line-only">
+                    <i class="zmdi zmdi-pin m-r-5 "></i>{{coupen.address}}</p>
+                  <p class="text-muted mb0 fs13 three-line-only">{{coupen.description}}</p>
+                </div>
+
+                <div class="property-action m-t-15">
+                  <a href="javscript:void();" (click)="viewCoupen(coupen._id)" title="View">
+                    <i class="zmdi zmdi-eye"></i>
+                    <span>View</span>
+                  </a>
+                  <a href="javscript:void();" title="Edit" (click)="edit(coupen)">
+                    <i class="zmdi zmdi-edit"></i>
+                    <span>Edit</span>
+                  </a>
+                  <a href="javscript:void();" title="Delete" (click)="delete(coupen._id)">
+                    <i class="zmdi zmdi-delete"></i>
+                    <span>Delete</span>
+                  </a>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+  </section>
+</body>

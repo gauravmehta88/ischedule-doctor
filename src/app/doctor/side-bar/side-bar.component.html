@@ -1,0 +1,142 @@
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+  <div class="menu">
+    <ul class="list">
+      <li>
+        <div class="user-info">
+          <div class="image">
+            <a href="javascript:void();" routerLink="/doctor/profile">
+
+              <img id="sideBarImg" *ngIf="profilePicPath==null" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRaio77_lSjjRsEQNoeSphgSURXg6Tde1rgJi1frZR2cAyHGoPq"
+                class="rounded-circle" />
+              <img id="sideBarImg" *ngIf="profilePicPath!=null" src="{{profilePicPath}}" class="rounded-circle">
+
+            </a>
+
+
+
+
+          </div>
+          <div class="detail">
+            <h4 class="mb-3">Dr. {{ firstName }} {{ lastName }}</h4>
+            <!--<small>(M.D.)</small>-->
+          </div>
+          <!-- <a href="events.html" title="Events"><i class="zmdi zmdi-calendar"></i></a>
+                  <a href="mail-inbox.html" title="Inbox"><i class="zmdi zmdi-email"></i></a>
+                  <a href="contact.html" title="Contact List"><i class="zmdi zmdi-account-box-phone"></i></a>
+                  <a href="chat.html" title="Chat App"><i class="zmdi zmdi-comments"></i></a>
+                  <a href="sign-in.html" title="Sign out"><i class="zmdi zmdi-power"></i></a>-->
+        </div>
+      </li>
+
+      <li class="" [routerLinkActive]="'active'">
+        <a routerLink="/doctor/dashboard">
+          <i class="zmdi zmdi-home"></i> Dashboard</a>
+      </li>
+
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/bookAppointment" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-calendar-alt"></i> Book Appointment</a>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/doctorProfile" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-box"></i> Doctor Profile</a>
+      </li>
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/doctorSchedule" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-add"></i> Calendar View</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/schedule" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-time-countdown"></i> Schedule</a>
+      </li>
+      <!-- <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/slotBooking" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-add"></i> Slot Booking</a>
+      </li> -->
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/notes" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-edit"></i> Notes</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/addCoupen" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-collection-plus"></i> Add Coupon</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/allCoupens" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-view-carousel"></i> All Coupons</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/coupenCategory" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-plus-circle"></i> Add Coupon Category</a>
+      </li>
+
+
+
+      <li [routerLinkActive]="'chat'">
+        <a routerLink="/doctor/chat" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-comment"></i> Chat</a>
+      </li>
+
+
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/addPatient" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-add"></i> Add Patient</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/approveDisapprove" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-calendar-check"></i> Approve/Disapprove Appointment</a>
+      </li>
+
+
+
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/searchPatient" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-search-in-file"></i> Search Patient</a>
+      </li>
+      <!--
+ <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/adddoctorSchedule" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-add"></i> Add Doctor Schedule</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a target="blank" routerLink="/listAllDoctors" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-o"></i> List All Doctors</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a target="blank" routerLink="/doctorPublicProfile/5cbab271de3e275696acfbe0" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-o"></i> Doctor Public Profile</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/addStaff" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-o"></i> Add Staff</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/composeMail" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-o"></i> Compose Mail</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/inboxMail" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-o"></i> Inbox Mail</a>
+      </li>
+
+      <li [routerLinkActive]="'active'">
+        <a routerLink="/doctor/viewMail" [routerLinkActive]="'active'">
+          <i class="zmdi zmdi-account-o"></i>View Mail</a>
+      </li>-->
+    </ul>
+  </div>
+</aside>

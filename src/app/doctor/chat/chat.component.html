@@ -1,0 +1,146 @@
+<!-- Main Content -->
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="false">
+  <div class="loader">
+    <div class="m-t-30">
+      <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+
+<section class="content">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>Search patients
+          <small class="text-muted">Search by any keyword</small>
+        </h2>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12">
+        <ul class="breadcrumb float-md-right">
+          <li class="breadcrumb-item">
+            <a routerLink="/doctor/dashboard">
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="javascript:void(0);"> Chat</a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-12 col-xl-12">
+        <div class="card chat-app">
+          <div id="plist" class="people-list">
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="query" placeholder="Search...">
+              <span class="input-group-addon">
+                <i class="zmdi zmdi-search"></i>
+              </span>
+            </div>
+            <ul class="chat-list list-unstyled m-b-0">
+              <li class="clearfix d-flex" (click)="setClass(i)" [ngClass]="getClass(i)" *ngFor="let onlineUser of onlineUsers| searchChat: query;let i=index"
+                (click)="startChat(onlineUser)">
+                <img *ngIf="onlineUser.patient_id.profilePicPath" src="{{onlineUser.patient_id.profilePicPath}}" alt="avatar" />
+                <img *ngIf="!onlineUser.patient_id.profilePicPath" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRaio77_lSjjRsEQNoeSphgSURXg6Tde1rgJi1frZR2cAyHGoPq"
+                  alt="avatar" />
+
+
+                <div class="about">
+                  <div class="name">{{onlineUser.patient_id.firstName}} &nbsp;{{onlineUser.patient_id.lastName}}</div>
+                  <div class="status">
+                    {{onlineUser.patient_id.address}} </div>
+                </div>
+              </li>
+
+
+
+            </ul>
+
+          </div>
+
+          <div class="chat" *ngIf="patientName">
+            <div class="chat-header clearfix">
+
+              <img *ngIf="patientProfilePic!='' && patientProfilePic!=null" src="{{patientProfilePic}}" alt="avatar" />
+              <img *ngIf="patientProfilePic==''|| patientProfilePic==null" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRaio77_lSjjRsEQNoeSphgSURXg6Tde1rgJi1frZR2cAyHGoPq"
+                alt="avatar" />
+              <div class="chat-about">
+                <div class="chat-with"> {{patientName}} </div>
+                <div class="chat-num-messages">already {{chatMessages.length}} messages</div>
+              </div>
+              <a href="javascript:void(0);" class="list_btn btn btn-primary btn-round float-md-right">
+                <i class="zmdi zmdi-comments"></i>
+              </a>
+            </div>
+            <div class="chat-history">
+              <ul>
+                <div *ngIf="chatMessages.length==0">No messages</div>
+
+                <li class="clearfix" *ngFor="let chatmessage of chatMessages">
+                  <div *ngIf="chatmessage.sender=='D'">
+                    <div class="message-data text-right">
+                      <span class="message-data-time">{{getTime(chatmessage.created_on)}}</span> &nbsp; &nbsp;
+                      <span class="message-data-name">{{doctorName}}</span> &nbsp;
+                      <i class="zmdi zmdi-circle me"></i>
+                    </div>
+                    <div class="message other-message float-right"> {{chatmessage.message}} </div>
+                  </div>
+
+                  <div *ngIf="chatmessage.sender=='P'">
+                    <div class="message-data">
+                      <span class="message-data-name">
+                        <i class="zmdi zmdi-circle online"></i> {{patientName}}</span>
+                      <span class="message-data-time">{{getTime(chatmessage.created_on)}}</span>
+                    </div>
+                    <div class="message my-message">
+                      <p>{{chatmessage.message}}</p>
+
+                    </div>
+                  </div>
+
+                </li>
+
+
+              </ul>
+            </div>
+            <div class="chat-message clearfix">
+              <div class="input-group p-t-15">
+                <input type="text" class="form-control" (keyup)="enterPressed($event)" [(ngModel)]="msgText" placeholder="Enter text here...">
+                <span class="input-group-addon" (click)="sendMessage()">
+                  <i class="zmdi zmdi-mail-send"></i>
+                </span>
+              </div>
+
+              <a href="javascript:void(0);" (click)="sendMessage()" class="btn btn-raised btn-info btn-round">Send</a>
+            </div>
+          </div>
+          <div class="chat" *ngIf="!patientName">
+            <div class="chat-header clearfix">
+
+              <div class="chat-about">
+                <div class="chat-with">Please click on patient name to start chat </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

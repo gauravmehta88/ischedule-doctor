@@ -1,0 +1,176 @@
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="loading">
+  <div class="loader">
+    <div class="m-t-30">
+      <img class="zmdi-hc-spin" src="/assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+<!-- Main Content -->
+<section class="content profile-page">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>Book a Slot
+          <small class="text-muted">Welcome Patient Name</small>
+        </h2>
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-12">
+        <div class="card member-card">
+          <div style="min-height:60px;" class="header l-cyan">
+            <h5 class="m-t-0 m-b-0">What time works for you?</h5>
+          </div>
+
+
+          <div style="text-align:left;" class="body">
+
+
+
+
+
+            <p class="m-b-0 m-t-10">
+              <b>Start Serch on</b>
+            </p>
+
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="zmdi zmdi-calendar"></i>
+              </span>
+              <input type="text" class="form-control datetimepicker" placeholder="Please choose date & time...">
+            </div>
+
+
+            <p class="m-b-0 m-t-10">
+              <b>Time </b>
+            </p>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="zmdi zmdi-calendar"></i>
+              </span>
+              <input type="text" class="form-control timepicker" placeholder="Please choose date & time...">
+            </div>
+            <div class="form-group pa0 all-time">
+
+              <select class="form-control show-tick" style="padding:0px;">
+                <option> All available times</option>
+                <option>Morning Time</option>
+                <option>Evening Time</option>
+              </select>
+
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="text-center m-t-20">
+              <button class="btn btn-info btn-lg btn-block m-b-30">Filter Times</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-8 col-md-12">
+
+        <div class="card">
+
+          <div class="body">
+
+            <ul class="inbox-widget list-unstyled clearfix">
+              <li class="inbox-inner">
+                <div class="inbox-item">
+                  <p class="author">Friday August 23, 2019</p>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+
+                  </div>
+                </div>
+              </li>
+
+              <li class="inbox-inner">
+                <div class="inbox-item">
+                  <p class="author">Monday August 23, 2019</p>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+
+                  </div>
+                </div>
+              </li>
+
+              <li class="inbox-inner">
+                <div class="inbox-item">
+                  <p class="author">Friday August 23, 2019</p>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="inbox-inner">
+                <div class="inbox-item">
+                  <p class="author">Friday August 23, 2019</p>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                      <a class="btn btn-info" href="">7:30 PM CDT</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+
+
+
+
+
+            </ul>
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

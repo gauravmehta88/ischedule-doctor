@@ -1,0 +1,1479 @@
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="loading">
+  <div class="loader">
+    <div class="m-t-30">
+      <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+
+
+
+<section class="content">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>Doctor's Availabilty
+          <small class="text-muted">Welcome to Ischedulenow</small>
+        </h2>
+      </div>
+	     <div class="col-lg-5 col-md-6 col-sm-12">
+          <ul class="breadcrumb float-md-right">
+             <li class="breadcrumb-item">
+           <a routerLink="/doctor/dashboard">	
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+            <li class="breadcrumb-item ">
+              <a href="javascript:void(0);">Schedule</a>
+            </li>
+
+          </ul>
+        </div>
+
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Availabilty </strong> Information
+              <small>Add Availabilty's Information here...</small>
+            </h2>
+
+          </div>
+          <div class="body">
+
+
+            <div class="card">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#working-hours">Working Hours</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#breaks">Breaks</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#time-off">Time Off</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#appointment-Slot">Slot Timings</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="working-hours">
+
+
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="header">
+                      <h2>
+                        <strong>Working </strong> Hours</h2>
+
+                    </div>
+                    <div class="body">
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Monday</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt5">
+                              <input id="switch-toggle-1" class="switch-toggle switch-toggle-flat mt20" [(ngModel)]="isMondayOpen" type="checkbox">
+                              <label for="switch-toggle-1"></label>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-2  col-xs-6 pt10 day-off" *ngIf="!isMondayOpen">Day off </div>
+
+                            <div class="col-2 pa0" *ngIf="isMondayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="mondayFromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+
+
+
+                              </select>
+
+                            </div>
+                            <div *ngIf="isMondayOpen" class="col-lg-1 col-md-2 col-sm-2  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-2 pa0" *ngIf="isMondayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="mondayToTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+
+                            <div class="col-2 pt10">
+                              <a href="javascript:void();" (click)="applyToAllmethod()">Apply to all</a>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Tuesday</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt5">
+                              <input id="switch-toggle-2" class="switch-toggle switch-toggle-flat mt20" [(ngModel)]="isTuesdayOpen" type="checkbox">
+                              <label for="switch-toggle-2"></label>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-2  col-xs-6 pt10 day-off" *ngIf="!isTuesdayOpen">Day off </div>
+
+                            <div class="col-2 pa0" *ngIf="isTuesdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="tuesdayFromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 text-center pa0 pt10" *ngIf="isTuesdayOpen">to</div>
+                            <div class="col-2 pa0" *ngIf="isTuesdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="tuesdayToTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Wednesday</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt5">
+                              <input id="switch-toggle-3" class="switch-toggle switch-toggle-flat mt20" [(ngModel)]="isWednesdayOpen" type="checkbox">
+                              <label for="switch-toggle-3"></label>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-2  col-xs-6 pt10 day-off" *ngIf="!isWednesdayOpen">Day off </div>
+
+                            <div class="col-2 pa0" *ngIf="isWednesdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="wednesdayFromTime">
+                                <option value="">Please select</option>
+
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 text-center pa0 pt10" *ngIf="isWednesdayOpen">to</div>
+                            <div class="col-2 pa0" *ngIf="isWednesdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="wednesdayToTime">
+                                <option value="">Please select</option>
+
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Thursday</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt5">
+                              <input id="switch-toggle-4" class="switch-toggle switch-toggle-flat mt20" [(ngModel)]="isThursdayOpen" type="checkbox">
+                              <label for="switch-toggle-4"></label>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-sm-2  col-xs-6 pt10 day-off" *ngIf="!isThursdayOpen">Day off </div>
+
+                            <div class="col-2 pa0" *ngIf="isThursdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="thursdayFromTime">
+                                <option value="">Please select</option>
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 text-center pa0 pt10" *ngIf="isThursdayOpen">to</div>
+                            <div class="col-2 pa0" *ngIf="isThursdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="thursdayToTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Friday</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt5">
+                              <input id="switch-toggle-5" class="switch-toggle switch-toggle-flat mt20" [(ngModel)]="isFridayOpen" type="checkbox">
+                              <label for="switch-toggle-5"></label>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-2  col-xs-6 pt10 day-off" *ngIf="!isFridayOpen">Day off </div>
+
+                            <div class="col-2 pa0" *ngIf="isFridayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="fridayFromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 text-center pa0 pt10" *ngIf="isFridayOpen">to</div>
+                            <div class="col-2 pa0" *ngIf="isFridayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="fridayToTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Saturday</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt5">
+                              <input id="switch-toggle-satur" class="switch-toggle switch-toggle-flat mt20" [(ngModel)]="isSaturdayOpen" type="checkbox">
+                              <label for="switch-toggle-satur"></label>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-sm-2  col-xs-6 pt10 day-off" *ngIf="!isSaturdayOpen">Day off </div>
+
+                            <div class="col-2 pa0" *ngIf="isSaturdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="saturdayFromTime">
+                                <option value="">Please select</option>
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 text-center pa0 pt10" *ngIf="isSaturdayOpen">to</div>
+                            <div class="col-2 pa0" *ngIf="isSaturdayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="saturdayToTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Sunday</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt5">
+                              <input id="switch-toggle-sunday" class="switch-toggle switch-toggle-flat mt20" [(ngModel)]="isSundayOpen" type="checkbox">
+                              <label for="switch-toggle-sunday"></label>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-sm-2  col-xs-6 pt10 day-off" *ngIf="!isSundayOpen">Day off </div>
+
+                            <div class="col-2 pa0" *ngIf="isSundayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="sundayFromTime">
+                                <option value="">Please select</option>
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 text-center pa0 pt10" *ngIf="isSundayOpen">to</div>
+                            <div class="col-2 pa0" *ngIf="isSundayOpen">
+                              <select class="form-control show-tick" [(ngModel)]="sundayToTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+
+                            <div class="col-sm-12">
+                              <button type="submit" (click)="submit()" class="btn btn-primary btn-round">
+                                Submit
+                              </button>
+                              <button type="submit" class="btn btn-default btn-round btn-simple">
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="breaks">
+
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="header">
+                      <h2>
+                        <strong>Breaks</strong> Time</h2>
+
+                    </div>
+                    <div class="body">
+
+
+
+
+                      <div class="row ma0" *ngFor="let mondayBreak of mondayBreaks;let i=index">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Monday</div>
+                            <div class="col-lg-2 col-md-2 col-sm-2  col-xs-6">
+                              <button class="btn btn-success btn-sm btn-round" (click)="addMondayBreak()">Add Break</button>
+                            </div>
+
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="mondayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="mondayBreak.toTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+                            <div class="col-2" (click)="deleteMondayBreak(i)">
+                              <button class="btn btn-primary btn-icon  btn-icon-mini btn-round">
+                                <i class="zmdi zmdi-delete"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                      <div class="row ma0" *ngFor="let tuesdayBreak of tuesdayBreaks;let i=index">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Tuesday</div>
+                            <div class="col-lg-2 col-md-2 col-sm-2  col-xs-6">
+                              <button class="btn btn-success btn-sm btn-round" (click)="addTuesdayBreak()">Add Break</button>
+                            </div>
+
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="tuesdayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="tuesdayBreak.toTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+                            <div class="col-2" (click)="deleteTuesdayBreak(i)">
+                              <button class="btn btn-primary btn-icon  btn-icon-mini btn-round">
+                                <i class="zmdi zmdi-delete"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0" *ngFor="let wednesdayBreak of wednesdayBreaks;let i=index">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Wednesday</div>
+                            <div class="col-lg-2 col-md-2 col-sm-2  col-xs-6">
+                              <button class="btn btn-success btn-sm btn-round" (click)="addWednesdayBreak()">Add Break</button>
+                            </div>
+
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="wednesdayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="wednesdayBreak.toTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+                            <div class="col-2" (click)="deleteWednesdayBreak(i)">
+                              <button class="btn btn-primary btn-icon  btn-icon-mini btn-round">
+                                <i class="zmdi zmdi-delete"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0" *ngFor="let thursdayBreak of thursdayBreaks;let i=index">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Thursday</div>
+                            <div class="col-lg-2 col-md-2 col-sm-2  col-xs-6">
+                              <button class="btn btn-success btn-sm btn-round" (click)="addThursdayBreak()">Add Break</button>
+                            </div>
+
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="thursdayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="thursdayBreak.toTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+                            <div class="col-2" (click)="deleteThursdayBreak(i)">
+                              <button class="btn btn-primary btn-icon  btn-icon-mini btn-round">
+                                <i class="zmdi zmdi-delete"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0" *ngFor="let fridayBreak of fridayBreaks;let i=index">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Friday</div>
+                            <div class="col-lg-2 col-md-2 col-sm-2  col-xs-6">
+                              <button class="btn btn-success btn-sm btn-round" (click)="addFridayBreak()">Add Break</button>
+                            </div>
+
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="fridayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="fridayBreak.toTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+                            <div class="col-2" (click)="deleteFridayBreak(i)">
+                              <button class="btn btn-primary btn-icon  btn-icon-mini btn-round">
+                                <i class="zmdi zmdi-delete"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0" *ngFor="let saturdayBreak of saturdayBreaks;let i=index">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Saturday</div>
+                            <div class="col-lg-2 col-md-2 col-sm-2  col-xs-6">
+                              <button class="btn btn-success btn-sm btn-round" (click)="addSaturdayBreak()">Add Break</button>
+                            </div>
+
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="saturdayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="saturdayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+                            <div class="col-2" (click)="deleteSaturdayBreak(i)">
+                              <button class="btn btn-primary btn-icon  btn-icon-mini btn-round">
+                                <i class="zmdi zmdi-delete"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row ma0" *ngFor="let sundayBreak of sundayBreaks;let i=index">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pt10">Sunday</div>
+                            <div class="col-lg-2 col-md-2 col-sm-2  col-xs-6">
+                              <button class="btn btn-success btn-sm btn-round" (click)="addSundayBreak()">Add Break</button>
+                            </div>
+
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="sundayBreak.fromTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+
+                              </select>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1  col-xs-6 text-center pa0 pt10">to</div>
+                            <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                              <select class="form-control show-tick" [(ngModel)]="sundayBreak.toTime">
+                                <option value="">Please select</option>
+
+                                <option value="09:00">09:00 </option>
+                                <option value="09:30">09:30 </option>
+                                <option value="10:00">10:30 </option>
+                                <option value="10:30">10:30 </option>
+
+                                <option value="11:00">11:00 </option>
+                                <option value="11:30">11:30 </option>
+                                <option value="12:00">12:00 </option>
+                                <option value="12:30">12:30 </option>
+                                <option value="13:00">13:00 </option>
+                                <option value="13:30">13:30 </option>
+                                <option value="14:00">14:00 </option>
+                                <option value="14:30">14:30 </option>
+
+                                <option value="15:00">15:00 </option>
+                                <option value="15:30">15:30 </option>
+                                <option value="16:00">16:00 </option>
+
+                                <option value="16:30">16:30 </option>
+                                <option value="17:00">17:00 </option>
+                                <option value="17:30">17:30 </option>
+                                <option value="18:00">18:00 </option>
+                                <option value="18:30">18:30 </option>
+                                <option value="19:00">19:00 </option>
+                                <option value="19:30">19:30 </option>
+                              </select>
+                            </div>
+                            <div class="col-2" (click)="deleteSundayBreak(i)">
+                              <button class="btn btn-primary btn-icon  btn-icon-mini btn-round">
+                                <i class="zmdi zmdi-delete"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row ma0">
+                        <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="row ma0">
+
+                            <div class="col-sm-12">
+                              <button type="submit" (click)="submit()" class="btn btn-primary btn-round">
+                                Submit
+                              </button>
+                              <button type="submit" class="btn btn-default btn-round btn-simple">
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div role="tabpanel" class="tab-pane" id="time-off">
+                <!-- Exportable Table -->
+                <div class="row clearfix">
+                  <div class="col-lg-12">
+                    <div class="card">
+                      <div class="header">
+                        <h2 class="mb20">
+                          <strong>Add Time</strong> Off</h2>
+
+                        <button type="button" class="btn btn-info btn-lg mt20" data-toggle="modal" data-target="#timeoff">Add Time Off</button>
+
+
+                      </div>
+                      <div class="body">
+
+
+
+                        <ul class="inbox-widget list-unstyled clearfix">
+                          <li class="inbox-inner" *ngFor="let timeOff of timeOffs;let i=index">
+                            <a href="">
+                              <div class="inbox-item">
+                                <div class="inbox-img">
+                                  <img *ngIf="profilePicPath" src="{{profilePicPath}}" alt="">
+                                  <img *ngIf="!profilePicPath" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRaio77_lSjjRsEQNoeSphgSURXg6Tde1rgJi1frZR2cAyHGoPq"
+                                    alt="">
+
+                                </div>
+                                <div class="inbox-item-info">
+                                  <p class="author">{{timeOff.startDateTimeOff | date: 'dd/MM/yyyy'}} to {{timeOff.endDateTimeOff | date: 'dd/MM/yyyy'}}
+                                  </p>
+                                  <p class="inbox-message"> {{timeOff.timeOffDesc}}</p>
+                                  <p class="inbox-date"> ({{timeOff.diffDays}} Days Off)
+                                    <a href="javascript:void();" class="badge badge-danger" (click)="deleteTimeOff(i)">Delete</a>
+                                  </p>
+
+                                </div>
+                              </div>
+                            </a>
+
+                          </li>
+
+
+
+
+                        </ul>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <button type="submit" (click)="submit()" class="btn btn-primary btn-round">
+                      Submit
+                    </button>
+                    <button type="submit" class="btn btn-default btn-round btn-simple">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+
+                <!-- #END# Exportable Table -->
+
+              </div>
+
+              <div role="tabpanel" class="tab-pane" id="appointment-Slot">
+                <div class="row clearfix">
+                  <div class="col-lg-12">
+                    <div class="card">
+                      <div class="header">
+                        <h2 class="mb20">
+                          <strong>Slot </strong> Timings</h2>
+
+
+
+                      </div>
+                      <div class="body">
+                        <div class="col-lg-1 col-md-2 col-sm-2  col-xs-6 pa0">
+                          <select class="form-control show-tick" [(ngModel)]="slotDuration">
+                            <option value="0">Please select</option>
+                            <option value="10">10 mins</option>
+                            <option value="15">15 mins</option>
+                            <option value="20">20 mins</option>
+                            <option value="30">30 mins</option>
+                            <option value="60">60 mins</option>
+
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row ma0">
+                  <div class="Col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row ma0">
+
+                      <div class="col-sm-12">
+                        <button type="submit" (click)="submit()" class="btn btn-primary btn-round">
+                          Submit
+                        </button>
+                        <button type="submit" class="btn btn-default btn-round btn-simple">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Time Off stat -->
+<div class="modal fade" id="timeoff" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="title" id="largeModalLabel">Add Time Off</h4>
+      </div>
+      <div class="modal-body">
+        <div class="body">
+          <div class="row clearfix">
+            <div class="col-sm-12">
+              Start Date
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="zmdi zmdi-calendar"></i>
+                </span>
+                <input type="text" class="form-control datetimepicker" [(ngModel)]="startDateTimeOff" [minDate]="minDate" bsDatepicker placeholder="Please choose date ">
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              End Date
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="zmdi zmdi-calendar"></i>
+                </span>
+                <input type="text" class="form-control datetimepicker" [(ngModel)]="endDateTimeOff" [minDate]="minDate" bsDatepicker placeholder="Please choose date ">
+              </div>
+            </div>
+            <div class="col-sm-12">
+
+              <div class="form-group">
+                <div class="form-line">
+                  <textarea rows="2" class="form-control no-resize" [(ngModel)]="timeOffDesc" placeholder="Please type Description..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="saveTimeOff()" class="btn btn-success waves-effect">Save</button>
+        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</div>
+
+<!-- Time Off End -->

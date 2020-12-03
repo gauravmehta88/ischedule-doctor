@@ -1,0 +1,443 @@
+<!-- Main Content -->
+<!-- Page Loader -->
+
+<body>
+  <toaster-container [toasterconfig]="config"></toaster-container>
+
+  <div class="page-loader-wrapper" *ngIf="loading">
+    <div class="loader">
+      <div class="m-t-30">
+        <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+      </div>
+      <p>Please wait....</p>
+    </div>
+  </div>
+
+  <!-- Overlay For Sidebars -->
+  <div class="overlay" *ngIf="false"></div>
+  <app-top-bar></app-top-bar>
+  <app-side-bar></app-side-bar>
+  <section class="content profile-page">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <h2>
+            Doctors Profile..
+            <small class="text-muted">Welcome Dr. {{ firstName }} {{ lastName }}</small>
+          </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <button class="btn btn-primary btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
+            <i class="zmdi zmdi-plus"></i>
+          </button>
+          <ul class="breadcrumb float-md-right">
+             <li class="breadcrumb-item">
+           <a routerLink="/doctor/dashboard">	
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+            
+            <li class="breadcrumb-item active">Doctors Profile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row clearfix">
+        <div class="col-lg-4 col-md-12">
+          <div class="card member-card">
+            <div class="header l-cyan">
+              <h4 class="m-t-10"> Dr. {{ firstName }} {{ lastName }}</h4>
+            </div>
+
+
+            <div class="member-img">
+              <div id="aniimated-thumbnials" (click)="uploadDocument()">
+
+                <a href="javascript:void();" style="cursor:pointer">
+                  <img *ngIf="!profilePic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRaio77_lSjjRsEQNoeSphgSURXg6Tde1rgJi1frZR2cAyHGoPq"
+                    class="rounded-circle" />
+
+                  <img *ngIf="profilePic" src="{{profilePic}}" class="rounded-circle" alt="profile-image">
+                </a>
+                <br>
+                <a href="assets/images/profile_av.jpg" class="">
+
+                </a>
+
+
+              </div>
+            </div>
+
+            <div class="body">
+              <div class="col-12">
+                <ul class="social-links list-unstyled">
+                  <li>{{ speciality }}</li>
+                </ul>
+                <p class="text-muted">{{ address }}</p>
+              </div>
+              <hr />
+              <!--<div class="row">
+                            <div class="col-4">
+                                <h5>852</h5>
+                                <small>Following</small>
+                            </div>
+                            <div class="col-4">
+                                <h5>13k</h5>
+                                <small>Followers</small>
+                            </div>
+                            <div class="col-4">
+                                <h5>234</h5>
+                                <small>Post</small>
+                            </div>                            
+                        </div>-->
+            </div>
+          </div>
+          <div class="card">
+            <div class="tab-pane body active" id="about">
+              <!-- <small class="text-muted">Position: </small>
+              <p>{{ designation }}</p>
+              <hr /> -->
+              <small class="text-muted">Hospital: </small>
+              <p>{{ hospital }}</p>
+              <hr />
+              <small class="text-muted">Email address: </small>
+              <p>{{ email }}</p>
+              <hr />
+              <small class="text-muted">Phone: </small>
+              <p>+ {{ mobileNumber }}</p>
+              <hr />
+              <small class="text-muted">About me:</small>
+              <p>
+                {{ aboutme }}
+              </p>
+              <hr />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 col-md-12">
+          <form [formGroup]="profileForm">
+            <div class="tab-content">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Personal</strong> information</h2>
+                </div>
+                <div class="body row">
+				 <div class="col-sm-6 col-lg-3">
+                  <div class="form-group">
+				  <label>First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" />
+                  </div>
+                  </div>
+                  <div class="error" *ngIf="
+                        !profileForm.controls.firstName.valid && errorFirstName
+                      ">
+                    *Required
+                  </div>
+<div class="col-sm-6 col-lg-3">
+                  <div class="form-group">
+				  <label>Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" />
+                  </div>
+                  </div>
+                  <div class="error" *ngIf="
+                        !profileForm.controls.lastName.valid && errorLastName
+                      ">
+                    *Required
+                  </div>
+				  <div class="col-sm-6 col-lg-3">
+                  <div class="form-group">
+<label>Date of Birth</label>
+                    <input id="dob" (bsValueChange)="onDateValueChange($event)" type="text" class="form-control datetimepicker" placeholder="Age"
+                      formControlName="age" bsDatepicker />
+                  </div>
+                  </div>
+<div class="col-sm-6 col-lg-3">
+                  <div class="form-group">
+				  <label>Gender</label>
+                    <select class="form-control pa0 show-tick" formControlName="gender">
+                      <option value="NotShared">--Select--</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+
+                    </select>
+                  </div>
+                  </div>
+
+<div class="col-sm-12">
+                  <div class="form-group">
+				  <label>Address</label>
+                    <input type="text" class="form-control" placeholder="28 Sheffield ct North Brunswick, NJ" formControlName="address" />
+                  </div>
+                  </div>
+				  
+				  
+				  <div class="col-sm-12">
+                  <div class="form-group">
+				  <label>About Me</label>
+                     <textarea formControlName="aboutme" rows="4" class="form-control no-resize" placeholder="About me"></textarea>
+                  </div>
+                  </div>
+
+                  <!-- <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="pin code"
+                      formControlName="pincode"
+                    />
+                  </div> -->
+                  <!-- <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Orthonova"
+                      formControlName="hospital"
+                    />
+                  </div> -->
+                  <!-- <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="position"
+                      formControlName="designation"
+                    />
+                  </div> -->
+                </div>
+              </div>
+              
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>In-network </strong> insurances</h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#in-network-insurances">
+                        Select In-network insurances
+                      </button>
+                    </div>
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Specialties </strong>
+                  </h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <select class="form-control show-tick" formControlName="speciality" (change)="onChange()" id="drpdownSpeciality">
+                        <option value="">--Select--</option>
+                        <option value="{{ specility._id }}" *ngFor="let specility of allSpecialities">{{ specility.displayName }}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Hospital </strong>affiliations</h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Robert Wood Johnson University Hospital" formControlName="hospital"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Board </strong> certifications</h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="American Board of Internal Medicine" formControlName="boardCertification"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Education and </strong> training</h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Trinitas Hospital (Residency)" formControlName="eduAndTraining" />
+                      </div>
+                    </div>
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Awards and </strong> publications</h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Patient's Choice Award 2010" formControlName="awardAndPublication" />
+                      </div>
+                    </div>
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Languages </strong>spoken</h2>
+                  <small class="text-muted"> After type press Enter</small>
+                </div>
+                <div class="body">
+                  <div class="form-group demo-tagsinput-area">
+                    <div class="form-line">
+                      <input id="inputTag" type="text" class="form-control" data-role="tagsinput" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>NPI </strong>number</h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="1205818135" formControlName="npiNumber" />
+                      </div>
+                    </div>
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Office </strong>locations</h2>
+                </div>
+                <div class="body">
+                  <div class="row clearfix">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <!-- <textarea rows="4" class="form-control no-resize" placeholder="Nazia Rizvi
+  2090 Route 27, 101
+  North Brunswick, NJ 08902" formControlName="officeLocationAddress"></textarea> -->
+  <div>
+    <div class="ui-widget">
+      <label for="searchBox">
+        Search:
+      </label>
+      <input id="searchBox" />
+    </div>
+    <div id="searchResult" class="ui-widget" style="margin-top: 1em;">
+    </div>
+  </div>                   
+</div>
+                    </div>
+
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- File Upload | Drag & Drop OR With Click & Choose -->
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="card">
+                    <div class="header">
+                      <h2>
+                        <strong>Upload</strong>Photos</h2>
+                    </div>
+                    <div class="body" (click)="uploadDocumentArray()">
+                      <form id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">
+                        <div class="dz-message">
+                          <div class="drag-icon-cph">
+                            <i class="material-icons">touch_app</i>
+                          </div>
+                          <h3>Drop files here or click to upload.</h3>
+                          <em>(This is just a demo dropzone. Selected files are
+                            <strong>not</strong> actually uploaded.)</em>
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- #END# File Upload | Drag & Drop OR With Click & Choose -->
+            </div>
+            <button class="btn btn-info btn-round" (click)="saveChanges()">
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- in-network-insurances  -->
+  </section>
+  <div class="modal fade" id="in-network-insurances" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="title" id="largeModalLabel">
+            Select In Network Insurances
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="checkbox form-check-inline" *ngFor="let insurance of allInsurances; let i = index">
+              <input id="checkbox{{i}}" type="checkbox" value="{{ insurance._id }}" (change)="onChangeCheckBox(insurance._id)" [checked]="isChecked(insurance._id)"
+              />
+              <label for="checkbox{{i}}">{{ insurance.displayName }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default btn-round waves-effect">
+              SAVE CHANGES
+            </button> -->
+          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">
+            CLOSE
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

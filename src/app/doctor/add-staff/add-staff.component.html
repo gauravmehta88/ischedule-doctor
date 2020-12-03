@@ -1,0 +1,258 @@
+<!-- Main Content -->
+<!-- Page Loader -->
+<div class="page-loader-wrapper" *ngIf="false">
+  <div class="loader">
+    <div class="m-t-30">
+      <img
+        class="zmdi-hc-spin"
+        src="assets/images/logo.png"
+        width="48"
+        height="48"
+        alt="Ischedulenow"
+      />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+<section class="content">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>
+          Add Staff
+          <small class="text-muted">Welcome to Ischedulenow</small>
+        </h2>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12">
+        <button
+          class="btn btn-primary btn-icon btn-round hidden-sm-down float-right m-l-10"
+          type="button"
+        >
+          <i class="zmdi zmdi-plus"></i>
+        </button>
+        <ul class="breadcrumb float-md-right">
+          <li class="breadcrumb-item">
+            <a href="index.html"><i class="zmdi zmdi-home"></i> Ischedulenow</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="javascript:void(0);">Doctors</a>
+          </li>
+          <li class="breadcrumb-item active">Add Staff</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Basic</strong> Information
+              <small>Add Basic Information of Staff here...</small>
+            </h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First Name"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last Name"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Date of Birth"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <select class="form-control show-tick">
+                  <option value="">- Gender -</option>
+                  <option value="10">Male</option>
+                  <option value="20">Female</option>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Speciality"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Phone" />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Your Email"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Website URL"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <form
+                  action="/"
+                  id="frmFileUpload"
+                  class="dropzone"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <div class="dz-message">
+                    <div class="drag-icon-cph">
+                      <i class="material-icons">touch_app</i>
+                    </div>
+                    <h3>Drop files here or click to upload.</h3>
+                    <em
+                      >(This is just a demo dropzone. Selected files are
+                      <strong>not</strong> actually uploaded.)</em
+                    >
+                  </div>
+                  <div class="fallback">
+                    <input name="file" type="file" multiple />
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <textarea
+                    rows="4"
+                    class="form-control no-resize"
+                    placeholder="Please type what you want..."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary btn-round">
+                  Submit
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-default btn-round btn-simple"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Create Login </strong> of staff
+              <small>Create user name and Password here...</small>
+            </h2>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="User Name"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary btn-round">
+                  Submit
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-default btn-round btn-simple"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Multi Select -->
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Add</strong> Staff role
+              <small>Create staff role here...</small>
+            </h2>
+          </div>
+          <div class="body">
+            <select id="optgroup" class="ms" multiple="multiple">
+              <optgroup label="Reception">
+                <option value="AK">Reception</option>
+              </optgroup>
+              <optgroup label="staff">
+                <option value="CA">Doctor</option>
+                <option value="NV">Nurse</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #END# Multi Select -->
+  </div>
+</section>

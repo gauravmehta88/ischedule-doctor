@@ -1,0 +1,413 @@
+<body class="theme-cyan">
+  <toaster-container [toasterconfig]="config"></toaster-container>
+
+  <!-- Page Loader -->
+  <div class="page-loader-wrapper" *ngIf="loading">
+    <div class="loader">
+      <div class="m-t-30">
+        <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+      </div>
+      <p>Please wait...</p>
+    </div>
+  </div>
+
+  <!-- Overlay For Sidebars -->
+  <div class="overlay"></div>
+
+  <!-- Top Bar -->
+  <nav class="navbar">
+    <div class="col-12">
+      <div class="navbar-header">
+        <a href="javascript:void(0);" class="bars"></a>
+        <a class="navbar-brand" href="index.html">
+          <img src="/assets/images/logo.png" width="30" alt="Ischedulenow" />
+          <span class="m-l-10">Hospital</span>
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <a href="javascript:void(0);" class="ls-toggle-btn" data-close="true">
+            <i class="zmdi zmdi-swap"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+            <i class="zmdi zmdi-notifications"></i>
+            <div class="notify">
+              <span class="heartbit"></span>
+              <span class="point"></span>
+            </div>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right slideDown">
+            <li class="header">NOTIFICATIONS</li>
+            <li class="body">
+              <ul class="menu list-unstyled">
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="icon-circle bg-blue">
+                      <i class="zmdi zmdi-account"></i>
+                    </div>
+                    <div class="menu-info">
+                      <h4>8 New Appointment</h4>
+                      <p>
+                        <i class="zmdi zmdi-time"></i> 3 mins ago</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="icon-circle bg-blue">
+                      <i class="zmdi zmdi-account"></i>
+                    </div>
+                    <div class="menu-info">
+                      <h4>2 Payment Received</h4>
+                      <p>
+                        <i class="zmdi zmdi-time"></i> 14 mins ago</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="icon-circle bg-blue">
+                      <i class="zmdi zmdi-account"></i>
+                    </div>
+                    <div class="menu-info">
+                      <h4>8 New Appointment</h4>
+                      <p>
+                        <i class="zmdi zmdi-time"></i> 3 mins ago</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="icon-circle bg-blue">
+                      <i class="zmdi zmdi-account"></i>
+                    </div>
+                    <div class="menu-info">
+                      <h4>2 Payment Received</h4>
+                      <p>
+                        <i class="zmdi zmdi-time"></i> 14 mins ago</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="icon-circle bg-blue">
+                      <i class="zmdi zmdi-account"></i>
+                    </div>
+                    <div class="menu-info">
+                      <h4>8 New Appointment</h4>
+                      <p>
+                        <i class="zmdi zmdi-time"></i> 3 mins ago</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="icon-circle bg-blue">
+                      <i class="zmdi zmdi-account"></i>
+                    </div>
+                    <div class="menu-info">
+                      <h4>2 Payment Received</h4>
+                      <p>
+                        <i class="zmdi zmdi-time"></i> 14 mins ago</p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="footer">
+              <a href="javascript:void(0);">View All Notifications</a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="javascript:void(0);" class="fullscreen hidden-sm-down" data-provide="fullscreen" data-close="true">
+            <i class="zmdi zmdi-fullscreen"></i>
+          </a>
+        </li>
+        <li>
+          <a href="sign-in.html" class="mega-menu" data-close="true">
+            <i class="zmdi zmdi-power"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Left Sidebar -->
+  <aside id="leftsidebar" class="sidebar">
+    <div class="menu">
+
+
+
+      <div style="margin-bottom: 0px;" class="card m-b-0">
+        <div class="header">
+          <h2>
+            <strong>More</strong> Filters</h2>
+        </div>
+
+      </div>
+      <div id="accordion" class="accordion">
+        <div class="card mb-0">
+          <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+            <a class="card-title">
+              Availability
+            </a>
+          </div>
+          <div id="collapseOne" class="collapse" data-parent="#accordion">
+
+
+            <div class="radio">
+              <input type="radio" name="radio1" id="radio1" value="option1">
+              <label for="radio1">
+                Any Day
+              </label>
+            </div>
+
+            <div class="radio">
+              <input type="radio" name="radio1" id="radio2" value="option2" checked="">
+              <label for="radio2">
+                Today
+              </label>
+            </div>
+
+            <div class="radio">
+              <input type="radio" name="radio1" id="radio3" value="option3">
+              <label for="radio3">
+                Next Three Day
+              </label>
+            </div>
+
+          </div>
+          <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            <a class="card-title">
+              Special Hours
+            </a>
+          </div>
+          <div id="collapseTwo" class=" collapse" data-parent="#accordion">
+
+
+            <div class="checkbox">
+              <input id="checkbox1" type="checkbox">
+              <label for="checkbox1">
+                After 5:00 PM
+              </label>
+            </div>
+
+            <div class="checkbox">
+              <input id="checkbox2" type="checkbox" checked="">
+              <label for="checkbox2">
+                Before 10:00 AM
+              </label>
+            </div>
+
+
+
+
+
+
+
+          </div>
+          <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+            <a class="card-title">
+              Doctor's Gender
+            </a>
+          </div>
+          <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div>
+
+
+              <div class="checkbox">
+                <input id="checkbox3" type="checkbox">
+                <label for="checkbox3">
+                  Male
+
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <input id="checkbox4" type="checkbox" checked="">
+                <label for="checkbox4">
+                  Female
+
+                </label>
+              </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+          <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+            <a class="card-title">
+              Languages Spoken
+            </a>
+          </div>
+          <div id="collapse4" class="collapse" data-parent="#accordion">
+            <div>
+
+
+
+              <div class="checkbox">
+                <input id="checkbox5" type="checkbox">
+                <label for="checkbox5">
+                  English
+
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <input id="checkbox6" type="checkbox" checked="">
+                <label for="checkbox6">
+                  Hindi
+
+                </label>
+              </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+          <!-- <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                <a class="card-title">
+                Additional Criteria
+                </a>
+            </div>
+            <div id="collapse5" class="collapse" data-parent="#accordion" >
+                <div >5555
+                </div>
+            </div>-->
+
+          <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+            <a class="card-title">
+              Sort Matches by
+            </a>
+          </div>
+          <div id="collapse6" class="collapse" data-parent="#accordion">
+            <div>
+
+              <div class="radio">
+                <input type="radio" name="radio2" id="default" value="option1">
+                <label for="default">
+                  default order
+                </label>
+              </div>
+
+              <div class="radio">
+                <input type="radio" name="radio2" id="distance" value="option2" checked="">
+                <label for="distance">
+                  distance
+                </label>
+              </div>
+
+              <div class="radio">
+                <input type="radio" name="radio2" id="wait" value="option3">
+                <label for="wait">
+                  wait time rating
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+
+  <section class="content profile-page">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+          <h2>
+            United Ischedulenow Choice Plus Doctors in 08902
+            <small class="text-muted">{{allDoctors.length}} Doctors Listed</small>
+          </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <ul class="breadcrumb float-md-right">
+            <li class="breadcrumb-item">
+              <a href="index.html">
+                <i class="zmdi zmdi-home"></i> Ischedulenow</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="javascript:void(0);">Doctors</a>
+            </li>
+            <li class="breadcrumb-item active">08902</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row clearfix">
+        <div class="col-lg-12">
+          <div class="card property_list" *ngFor="let doctor of allDoctors">
+            <div class="body">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="property_image">
+                    <img *ngIf="!doctor.profilePicPath" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRaio77_lSjjRsEQNoeSphgSURXg6Tde1rgJi1frZR2cAyHGoPq"
+                      class="img-thumbnail img-fluid" style="max-width: 50%;" />
+                    <img *ngIf="doctor.profilePicPath" src="{{doctor.profilePicPath}}" class="img-thumbnail img-fluid" alt="profile-image">
+
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                  <div class="property-content">
+                    <div class="detail">
+                      <h4 class="m-t-0 m-b-0">
+
+                        <a href="javascript:void();" class="col-blue-grey">Dr.{{ doctor.firstName }} &nbsp;{{ doctor.lastName }}, {{ doctor.designation }} </a>
+                      </h4>
+                      <h5 class="text-success m-t-5 m-b-0" *ngIf="doctor.speciality_ids.length>0">
+                        {{ doctor.speciality_ids[0].displayName }}
+
+                      </h5>
+                      <p class="text-muted m-b-0 m-t-10">
+                        <i class="zmdi zmdi-pin m-r-5"></i>{{ doctor.address }}
+                      </p>
+                      <p class="text-muted m-b-0 m-t-5">
+                        {{doctor.aboutme}}
+                      </p>
+
+
+                    </div>
+                    <div class="property-action m-t-15">
+                      <a routerLink="/patientlogin" title="time">
+                        <!-- <i class="zmdi zmdi-time"></i> -->
+                        <!-- <span>Next availability is Mon, Jan 28</span> -->
+
+                        <span class="badge badge-info">Book Apoointment</span>
+
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>

@@ -1,0 +1,398 @@
+<!-- Main Content -->
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="false">
+  <div class="loader">
+    <div class="m-t-30">
+      <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+<app-top-bar></app-top-bar>
+<app-side-bar></app-side-bar>
+<section class="content page-calendar">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>
+          Doctor Schedule
+          <small class="text-muted">Welcome to Ischedulenow</small>
+        </h2>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12">
+        <ul class="breadcrumb float-md-right">
+          <li class="breadcrumb-item">
+            <a routerLink="/doctor/dashboard">
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Doctor Schedule</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="row">
+
+        <div class="col-md-22 col-lg-12 col-xl-12">
+          <div class="body">
+
+            <div id="calendar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Default Size -->
+<div class="modal fade" id="addevent" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="title" id="defaultModalLabel">Add Schedule</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="form-line">
+            <input type="number" class="form-control" placeholder="Event Date" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-line">
+            <input type="text" class="form-control" placeholder="Event Title" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-line">
+            <textarea class="form-control no-resize" placeholder="Event Description..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-round waves-effect">
+          Add
+        </button>
+        <button type="button" class="btn btn-simple btn-round waves-effect" data-dismiss="modal">
+          CLOSE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal stat -->
+<div class="modal fade" id="add-appointment" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <form [formGroup]="patientForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="title" id="largeModalLabel">Add Appointment</h4>
+        </div>
+
+
+        <div class="modal-body">
+          <div class="body">
+            <div class="row clearfix">
+
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Enter Your Email" formControlName="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                  />
+                </div>
+              </div>
+              <div class="error" *ngIf="
+                      errorEmail ||
+                      ((patientForm.controls.email.dirty ||
+                        patientForm.controls.email.touched) &&
+                        !patientForm.controls.email.valid)
+                    " for="email">
+                *Required and in correct format
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Phone" formControlName="mobileNumber" maxlength="10" pattern="\d*" />
+                </div>
+              </div>
+              <div class="error" *ngIf="
+                      patientForm.controls.mobileNumber.value != '' &&
+                      patientForm.controls.mobileNumber.invalid &&
+                      (patientForm.controls.mobileNumber.touched ||
+                        patientForm.controls.mobileNumber.dirty)
+                    ">
+                *Invalid
+              </div>
+              <div class="error" *ngIf="errorMobile">
+                *required
+              </div>
+
+
+
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" />
+                </div>
+              </div>
+              <div class="error" *ngIf="!patientForm.controls.firstName.valid && errorFirstName">
+                *Required
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Middle Name" formControlName="middleName" />
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" />
+                </div>
+              </div>
+              <div class="error" *ngIf="!patientForm.controls.lastName.valid && errorLastName">
+                *Required
+              </div>
+
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Date of Birth" formControlName="dob" bsDatepicker [maxDate]="maxDate"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <select class="form-control show-tick mt0" formControlName="gender" id="drpdown">
+                  <option value="">- Gender -</option>
+                  <option value="MALE">Male</option>
+                  <option value="FEMALE">Female</option>
+                </select>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+
+                <select class="form-control show-tick mt0" formControlName="service" id="drpdownSpeciality">
+                  <option value="">- Service -</option>
+                  <option value="{{ specility._id }}" *ngFor="let specility of allSpecialities">{{ specility.displayName }}</option>
+                </select>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                  <input type="text" id="doa" class="form-control datetimepicker" placeholder="Please choose date of appointment." bsDatepicker
+                    [minDate]="maxDate" formControlName="dateOfAppointment" (bsValueChange)="onDateValueChange($event)" />
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..." formControlName="description"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-12">
+
+          <div class="card">
+
+            <div class="body">
+
+              <ul class="inbox-widget list-unstyled clearfix">
+                <li class="inbox-inner">
+                  <div class="inbox-item">
+                    <p class="author">{{dayName}}</p>
+
+                    <div class="row" *ngIf="slotArray.length>0">
+                      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 " *ngFor="let slot of slotArray;let i=index;">
+                        <a class="btn btn-info" (click)="bookAppointment(slot)" href="javasctipt:void();">{{slot}}</a>
+                      </div>
+
+                    </div>
+                    <div class="row" *ngIf="emptySlot">
+                      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                        No slot for given date
+                      </div>
+
+                    </div>
+                  </div>
+                </li>
+
+
+
+
+
+
+
+              </ul>
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="searchSlots()" class="btn btn-default btn-round waves-effect">
+            Search Slots
+          </button>
+          <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">
+            CLOSE
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- old -->
+<div class="modal fade" id="add-appointment-with-old" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="title" id="largeModalLabel">Add Appointment</h4>
+      </div>
+      <div class="modal-body">
+        <div class="body">
+          <div class="row clearfix">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search by name" />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <select class="form-control show-tick mt0">
+                <option value="">- Select Doctor -</option>
+                <option>Dr. Balwinder</option>
+                <option>Dr. Gurmatpal Singh</option>
+                <option>Dr. Kumar</option>
+                <option>Dr. Modi</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input type="text" class="datetimepicker form-control" placeholder="Please choose date & time..." />
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-round waves-effect">
+          Add Appointment
+        </button>
+        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">
+          CLOSE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- old -->
+
+<!-- red-->
+<div class="modal fade" id="cancel-appointment" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-red">
+      <div class="modal-header">
+        <h4 class="title" id="defaultModalLabel">
+          Are you sure to cancel this appointment
+        </h4>
+      </div>
+      <div class="modal-body col-white">
+        Appointment with {{eventToDelete.title}} on {{dateOfEvent}} at {{timeOfEvent}} .
+      </div>
+      <div class="modal-footer">
+        <button (click)="cancelAppointment()" type="button" class="btn btn-link waves-effect col-white">
+          Yes
+        </button>
+        <button type="button" class="btn btn-link waves-effect col-white" data-dismiss="modal">
+          CLOSE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- red end-->
+<div class="modal fade" id="change-appointment" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-grey">
+      <div class="modal-header">
+        <h4 class="title" id="defaultModalLabel">
+          Are you sure to move this appointment
+        </h4>
+      </div>
+      <div class="modal-body col-white">
+        Appointment with {{eventToDelete.title}} moving from {{dateOfEvent}} to {{dateChanged}} at {{timeOfEvent}} .
+      </div>
+      <div class="modal-footer">
+        <button (click)="changeAppointment({})" type="button" class="btn btn-link waves-effect col-white">
+          Yes
+        </button>
+        <button (click)="revertFunc()" type="button" class="btn btn-link waves-effect col-white" data-dismiss="modal">
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="move-appointment" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-grey">
+      <div class="modal-header">
+        <h4 class="title" id="defaultModalLabel">
+          Are you sure to move appointment with {{eventToDelete.title}} from {{dateOfEvent}} to {{dateChanged}}
+        </h4>
+      </div>
+      <div class="modal-body col-white">
+
+        <div class="row" *ngIf="slotArray.length>0">
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 " *ngFor="let slot of slotArray;let i=index;">
+            <a class="btn btn-info" (click)="changeAppointment(slot)" href="javasctipt:void();">{{slot}}</a>
+          </div>
+
+        </div>
+        <div class="row" *ngIf="emptySlot">
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+            <a class="btn-danger" href="javasctipt:void();">No slots avalibale on {{dateChanged}}</a>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+
+        <button (click)="revertFunc()" type="button" class="btn btn-link waves-effect col-white" data-dismiss="modal">
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="appointment-detail" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-blue">
+      <div class="modal-header">
+        <h4 class="title" id="defaultModalLabel">
+          Appointment details
+        </h4>
+      </div>
+      <div class="modal-body col-white">
+        Appointment with {{eventToDelete.title}} on date {{dateOfEvent}} at time {{timeOfEvent}} .
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-link waves-effect col-white" data-dismiss="modal">
+          CLOSE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal end -->

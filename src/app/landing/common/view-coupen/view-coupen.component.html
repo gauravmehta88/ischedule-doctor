@@ -1,0 +1,170 @@
+<!-- Page Loader -->
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<div class="page-loader-wrapper" *ngIf="loading">
+  <div class="loader">
+    <div class="m-t-30">
+      <img class="zmdi-hc-spin" src="assets/images/logo.png" width="48" height="48" alt="Ischedulenow" />
+    </div>
+    <p>Please wait...</p>
+  </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay" *ngIf="false"></div>
+
+<section class="">
+  <div class="block-header">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-sm-12">
+        <h2>Coupon Detail
+          <small class="text-muted">Welcome to IScheduleNow</small>
+        </h2>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12">
+        <ul class="breadcrumb float-md-right">
+          <li class="breadcrumb-item">
+           <a routerLink="/doctor/dashboard">	
+              <i class="zmdi zmdi-home"></i> Dashboard</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="javascript:void(0);">Coupon</a>
+          </li>
+          <li class="breadcrumb-item active">Coupon Detail</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-lg-8 col-md-12">
+        <div class="card">
+          <div class="body">
+            <div id="demo2" class="carousel slide" data-ride="carousel">
+              <ul class="carousel-indicators">
+                <li data-target="#demo2" data-slide-to="0" class="active"></li>
+                <li data-target="#demo2" data-slide-to="1" class=""></li>
+                <li data-target="#demo2" data-slide-to="2" class=""></li>
+              </ul>
+              <div class="carousel-inner">
+                <div class="carousel-item" *ngFor="let image of coupen.images">
+                  <img src="{{image}}" class="img-fluid" alt="" height="50%" width="50%">
+
+                </div>
+
+
+              </div>
+              <!-- Left and right controls -->
+              <a class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="card property_list">
+          <div class="property_image">
+            <a href="javascript:void();">
+              <img class="img-responsive coupon-img" src="{{coupen.images[0]}}" alt="img">
+            </a>
+            <span class="badge badge-danger">{{getDiscountPercnt(coupen)}}% discount</span>
+          </div>
+          <div class="col-lg-12 mt15 mb15">
+            <div class="property-content">
+              <div class="detail">
+
+                <h4 class="m-t-0 m-b-5">
+                  <a href="javascript:void();">{{coupen.title}}</a>
+                </h4>
+
+                <!-- <span class="fs11">4.3</span>
+                    <span class="fa fa-star" id="star1" onclick="add(this,1)"></span>
+                    <span class="fa fa-star" id="star2" onclick="add(this,2)"></span>
+                    <span class="fa fa-star" id="star3" onclick="add(this,3)"></span>
+                    <span class="fa fa-star" id="star4" onclick="add(this,4)"></span>
+                    <span class="fa fa-star" id="star5" onclick="add(this,5)"></span>
+                    <span class="fs11">(30)</span> -->
+
+
+                <h4 class="col-blue-grey m-t-0 m-b-5">
+                  <del>${{coupen.value}}</del>
+                  <span class="text-success">${{coupen.discountedValue}}</span>
+                </h4>
+
+
+
+
+
+                <p class="text-muted mb5 fs13 one-line-only">
+                  <i class="zmdi zmdi-pin m-r-5 "></i>{{coupen.address}}</p>
+                <p class="text-muted mb0 fs13 three-line-only">{{coupen.description}}</p>
+              </div>
+
+              <div class="property-action m-t-15">
+                <a href="javscript:void();" title="View">
+                  <i class="zmdi zmdi-eye"></i>
+                  <span>Buy</span>
+                </a>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+
+
+    <div class="col-lg-7 col-md-6 col-sm-12">
+      <h5>Similar Coupons
+      </h5>
+    </div>
+    <div class="row clearfix">
+
+      <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let coupen of SimilarCoupons">
+        <a href="/viewCoupen/{{coupen._id}}">
+          <div class="card property_list">
+            <div class="property_image">
+              <img class="img-thumbnail img-fluid" src="{{coupen.images[0]}}" alt="img">
+            </div>
+            <div class="body">
+              <div class="property-content">
+                <div class="detail">
+                  <h4 class="col-blue-grey m-t-0 m-b-5">
+                    <del>${{coupen.discountedValue}}</del>
+                    <span class="text-success">${{coupen.value}}</span>
+                  </h4>
+                  <h4 class="m-t-0 m-b-5">
+                    <a href="coupon-detail.html" class="col-blue-grey">{{coupen.title}}</a>
+                  </h4>
+
+                  <p class="text-muted">
+                    <i class="zmdi zmdi-pin m-r-5"></i>{{coupen.address}}</p>
+                  <p class="text-muted m-b-0">
+                    {{coupen.description}}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+</section>
