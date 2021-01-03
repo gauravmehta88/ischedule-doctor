@@ -14,6 +14,8 @@ import {
   ToasterConfig
 } from "angular2-toaster";
 import { Alert } from 'selenium-webdriver';
+import { access } from 'fs';
+import { parseDate } from 'ngx-bootstrap/chronos/create/local';
 
 
 
@@ -60,6 +62,7 @@ export class PatientProfileComponent implements OnInit {
   invoice: any = {}
   appointmentList: any = [];
   appid: String = ""
+  allInvoices: any = []
   constructor(
     private doctorService: DoctorService,
     private fb: FormBuilder,
@@ -78,6 +81,8 @@ export class PatientProfileComponent implements OnInit {
 
       this.getDocuments();
       this.getPatientAppointments();
+      this.getPatientInvoices();
+
 
     });
 
@@ -104,6 +109,16 @@ export class PatientProfileComponent implements OnInit {
 
       if (res.IsSuccess) {
         this.appointmentList = res.Data;
+      } else {
+        this.ts.pop("error", "", res.Message)
+      }
+    });
+  }
+  getPatientInvoices() {
+    this.doctorService.getPatientInvoices(this.patientId).subscribe(res => {
+
+      if (res.IsSuccess) {
+        this.allInvoices = res.Data
       } else {
         this.ts.pop("error", "", res.Message)
       }
@@ -158,18 +173,27 @@ export class PatientProfileComponent implements OnInit {
       this.ts.pop("error", "", "Invoice cant be empty")
       return false;
     }
+    var amount = 0;
+    this.billItems.forEach(billItem => {
+      amount += billItem.cost
+    });
+    amount = amount + (parseInt(this.invoiceTax) * amount / 100)
+    amount = amount - (parseInt(this.invoiceDiscount) * amount / 100)
+    console.log(amount)
     let dataToSend = {
       "appointment_id": this.appid,
       "billItems": this.billItems,
-      "subTotal": "40",
+      "subTotal": amount,
       "discount": this.invoiceDiscount,
       "tax": this.invoiceTax,
-      "total": "39",
+      "total": amount,
       "dueDate": this.invoiceDueDate,
       "patient_id": this.patientId,
       "notes": this.invoiceNotes
 
     }
+
+
 
     this.doctorService.addInvoice(dataToSend).subscribe(res => {
       console.log(res);
@@ -271,9 +295,9 @@ export class PatientProfileComponent implements OnInit {
     this.getPatientPrescription()
   }
 
-  viewInvoice(appid) {
-    this.appid = appid;
-    this.getPatientInvoice()
+  viewInvoice(invoice) {
+
+    this.invoiceDetail = invoice
   }
   getDocuments() {
     this.doctorService

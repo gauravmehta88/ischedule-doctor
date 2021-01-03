@@ -263,6 +263,26 @@ export class LoginService {
       }));
   }
 
+  loginStaff(loginDetails) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    return this.http
+      .post(environment.baseURL + "api/doctor/subAccount/login", loginDetails, {
+        headers: headers
+      })
+      .pipe(map(res => res.json()))
+
+      .pipe(catchError(e => {
+        if (e.status === 401) {
+          console.log("UnAuth");
+        }
+        if (e.ok == false) {
+          return "1";
+        }
+        return [];
+      }));
+  }
+
   loginPatient(loginDetails) {
     let headers = new Headers();
     headers.append("Content-Type", "application/json");

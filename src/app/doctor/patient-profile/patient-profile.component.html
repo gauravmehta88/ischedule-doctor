@@ -105,7 +105,8 @@
             <hr>
 
             <p>
-              <a routerLink="/doctor/chat" class="btn btn btn-primary btn-simple waves-effect btn-sm">Chat with patient </a>
+              <a routerLink="/doctor/chat" class="btn btn btn-primary btn-simple waves-effect btn-sm">Chat with patient
+              </a>
             </p>
 
 
@@ -152,7 +153,8 @@
                 <div class="card">
                   <div class="header">
                     <h2>
-                      <strong>View </strong> Documents</h2>
+                      <strong>View </strong> Documents
+                    </h2>
                     <small>You can View/ delete your health related documents here.</small>
                   </div>
                   <div class="body">
@@ -221,11 +223,13 @@
                     <div class="property-content">
                       <div class="detail">
 
-                        <h4 class="m-t-0 m-b-0"> Appointment on {{app.appointmentForDate |date}} at {{app.appointmentForTime}}</h4>
+                        <h4 class="m-t-0 m-b-0"> Appointment on {{app.appointmentForDate |date}} at {{app.appointmentForTime}}
+                        </h4>
 
                         <p class="text-muted m-b-0 m-t-5">
-                          <b>Note:</b> {{app.patientNotes}}</p>
-                        <p class="m-b-0">
+                          <b>Note:</b> {{app.patientNotes}}
+                        </p>
+                        <p class="m-b-0" *ngIf="(app.invoicesCount > 0)">
                           <b>Payment Status:</b>
                           <span class="badge bg-orange">Pending</span>
                           <!-- <span class="badge bg-success">Success</span> -->
@@ -233,7 +237,7 @@
 
                         <p class="m-t-0 m-b-0">
 
-                         <b> Prescription:</b>
+                          <b> Prescription:</b>
 
                           <button data-toggle="modal" data-target="#add-prescription" (click)="thisAppointment(app._id)" class="btn btn-icon  btn-icon-mini btn-neutral"
                             title="Add Prescription">
@@ -249,7 +253,7 @@
                             <i class="material-icons">note_add</i>
                           </button>
                           <button data-toggle="modal" data-target="#view-invoice" (click)="viewInvoice(app._id)" class="btn btn-icon  btn-icon-mini btn-neutral"
-                            title="View Invoice">
+                            *ngIf="(app.invoicesCount > 0)" title="View Invoice">
                             <i class="material-icons">remove_red_eye</i>
                           </button>
 
@@ -280,25 +284,29 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Appointment ID</th>
-                        <th>Date</th>
+                        <th>Appointment Date</th>
+                        <th>Total</th>
                         <th>Status</th>
                         <th>View</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let app of appointmentList">
-                        <td>{{app._id}}</td>
-                        <td>{{app.appointmentForDate | date}}</td>
-                        <td>
-                          <span class="badge badge-default">Pending</span>
-                        </td>
-                        <td>
-                          <a data-toggle="modal" data-target="#view-invoice" (click)="viewInvoice(app._id)" class="btn btn btn-primary btn-simple waves-effect btn-sm">View Invoice</a>
+                      <ng-container *ngFor="let app of allInvoices">
+                        <tr>
 
-                        </td>
-                      </tr>
+                          <td>{{app.appointment_id.appointmentForDate | date}}</td>
+                          <td>{{app.total}}</td>
 
+                          <td>
+                            <span class="badge badge-default">{{app.status}}</span>
+                          </td>
+                          <td>
+                            <a data-toggle="modal" data-target="#view-invoice" (click)="viewInvoice(app)" class="btn btn btn-primary btn-simple waves-effect btn-sm">View Invoice</a>
+
+                          </td>
+                        </tr>
+
+                      </ng-container>
                     </tbody>
                   </table>
                 </div>
@@ -325,9 +333,13 @@
                         <p>{{app.patientNotes }}</p>
                         <h2>
 
-                          <a data-toggle="modal" data-target="#view-prescription" (click)="viewPrescription(app._id)" class="btn btn btn-primary btn-simple waves-effect btn-sm">View Prescriptions</a>
+                          <a *ngIf="app.receiptsCount>0" data-toggle="modal" data-target="#view-prescription" (click)="viewPrescription(app._id)" class="btn btn btn-primary btn-simple waves-effect btn-sm">View Prescriptions</a>
 
                         </h2>
+
+                        <p *ngIf="app.receiptsCount==0">
+                          No prescriptions yet.
+                        </p>
                       </div>
 
                     </li>
@@ -445,7 +457,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" (click)="addPrescription()" class="btn btn-default btn-round waves-effect">Add Prescription</button>
+        <button type="button" (click)="addPrescription()" class="btn btn-default btn-round waves-effect">Add Prescription
+        </button>
         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
       </div>
     </div>
@@ -572,25 +585,27 @@
 
             <div class="col-md-12">
               <h6>{{precri.prescriptionTitle}} </h6>
-              <b> Medication type :</b> {{precri.medicationType}}<br>
-              <b> UOM :</b> {{precri.uom}}<br>
+              <b> Medication type :</b> {{precri.medicationType}}
+              <br>
+              <b> UOM :</b> {{precri.uom}}
+              <br>
               <b> Prescription Description :</b> {{precri.prescriptionDescription}}
 
-    <hr>
+              <hr>
             </div>
           </div>
-      
 
-      
+
+
 
           <!--  -->
           <div class="row">
             <div class="col-md-12">
               <h6>Note</h6>
               <p>{{prescriptionDetails.prescriptionNote}}</p>
-			   <hr>
+              <hr>
             </div>
-			   
+
             <div class="col-md-12">
               <h6>Pharmacy Detail</h6>
               <p>{{prescriptionDetails.pharmacyDetail}}</p>
@@ -663,7 +678,8 @@
           <div class="row clearfix">
 
             <div class="col-sm-2">
-              <button (click)="addBillItem()" type="button" class="btn btn-round btn-primary waves-effect">Add More</button>
+              <button (click)="addBillItem()" type="button" class="btn btn-round btn-primary waves-effect">Add More
+              </button>
             </div>
 
           </div>
@@ -771,7 +787,8 @@
           <div class="row clearfix">
 
             <div class="col-sm-2">
-              <button (click)="addBillItemEdit()" type="button" class="btn btn-round btn-primary waves-effect">Add More</button>
+              <button (click)="addBillItemEdit()" type="button" class="btn btn-round btn-primary waves-effect">Add More
+              </button>
             </div>
 
           </div>
@@ -848,56 +865,61 @@
       </div>
       <div class="modal-body" *ngIf="(invoiceDetail | json) != '{}'">
 
-          <div class="row pt20">
-            <div class="col-sm-4"><b>Total amount to pay :</b> ${{getInvoiceCost(invoiceDetail)}}</div>
-            <div class="col-sm-4"><b> Due Date :</b> {{invoiceDetail.dueDate | date}}</div>
-            <div class="col-sm-4"><b>Status : </b> <span class="badge bg-orange">{{invoiceDetail.status}}</span>
-            </div>  
-            </div>  
-         
-          
-          <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table class="table table-hover ">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Description</th>
-                      <th>Cost</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let billItem of invoiceDetail.billItems;let i=index;">
-                      <td>{{(i+1)}}</td>
-                      <td> {{billItem.description}} </td>
-                      <td>${{billItem.cost}}</td>
-                    </tr>
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <div class="row pt20">
+          <div class="col-sm-4">
+            <b>Total amount to pay :</b> ${{getInvoiceCost(invoiceDetail)}}</div>
+          <div class="col-sm-4">
+            <b> Due Date :</b> {{invoiceDetail.dueDate | date}}</div>
+          <div class="col-sm-4">
+            <b>Status : </b>
+            <span class="badge bg-orange">{{invoiceDetail.status}}</span>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-6">
-              <h5>Note</h5>
-              <p>{{invoiceDetail.notes}}</p>
-            </div>
-
-            <div class="col-md-6 text-right">
-              <p>
-                <b>Sub-total:</b> ${{getInvoiceSubTotal(invoiceDetail)}}</p>
-              <p>Discount: {{invoiceDetail.discount}}%</p>
-              <p>VAT: {{invoiceDetail.tax}}%</p>
-            </div>
-          </div>
-          <hr>
-
         </div>
 
-     
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let billItem of invoiceDetail.billItems;let i=index;">
+                    <td>{{(i+1)}}</td>
+                    <td> {{billItem.description}} </td>
+                    <td>${{billItem.cost}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Note</h5>
+            <p>{{invoiceDetail.notes}}</p>
+          </div>
+
+          <div class="col-md-6 text-right">
+            <p>
+              <b>Sub-total:</b> ${{getInvoiceSubTotal(invoiceDetail)}}
+            </p>
+            <p>Discount: {{invoiceDetail.discount}}%</p>
+            <p>VAT: {{invoiceDetail.tax}}%</p>
+          </div>
+        </div>
+        <hr>
+
+      </div>
+
+
       <div class="modal-footer">
 
         <button *ngIf="(invoiceDetail | json) != '{}'" type="button" data-toggle="modal" data-dismiss="modal" data-target="#edit-invoice"

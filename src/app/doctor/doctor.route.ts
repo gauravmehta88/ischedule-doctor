@@ -34,6 +34,10 @@ import { EditCoupenComponent } from './edit-coupen/edit-coupen.component';
 import { TodayAppointmentComponent } from './today-appointment/today-appointment.component';
 import { AllAppointmentsComponent } from './all-appointments/all-appointments.component';
 import { AllBillsComponent } from './all-bills/all-bills.component';
+import { SubscriptionPlanComponent } from './subscription-plan/subscription-plan.component';
+import { MySubscriptionPlanComponent } from './my-subscription-plan/my-subscription-plan.component';
+import { PaySubscriptionComponent } from './pay-subscription/pay-subscription.component';
+import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 
 export const routes: Routes = [
   {
@@ -42,6 +46,12 @@ export const routes: Routes = [
     children: [
       { path: "", component: DashboardComponent, pathMatch: "full" },
       { path: "dashboard", component: DashboardComponent, pathMatch: "full" },
+
+      { path: "viewAllStaff", component: ViewAllStaffComponent, pathMatch: "full" },
+      { path: "subscriptionPlan", component: SubscriptionPlanComponent, pathMatch: "full" },
+      { path: "mySubscriptionPlan", component: MySubscriptionPlanComponent, pathMatch: "full" },
+      { path: "pay-subscription/:subsId", component: PaySubscriptionComponent, pathMatch: "full" },
+
       { path: "todaysAppointments", component: TodayAppointmentComponent, pathMatch: "full" },
       { path: "allAppointments", component: AllAppointmentsComponent, pathMatch: "full" },
       { path: "allBills", component: AllBillsComponent, pathMatch: "full" },

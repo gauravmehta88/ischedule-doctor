@@ -1,4 +1,5 @@
 <toaster-container [toasterconfig]="config"></toaster-container>
+
 <body class="theme-cyan authentication sidebar-collapse">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
@@ -18,36 +19,20 @@
           </li>
 
           <li class="nav-item">
-            <a
-              class="nav-link"
-              title="Follow us on Twitter"
-              href="#"
-              target="_blank"
-            >
+            <a class="nav-link" title="Follow us on Twitter" href="#" target="_blank">
               <i class="zmdi zmdi-twitter"></i>
               <p class="d-lg-none d-xl-none">Twitter</p>
             </a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              title="Like us on Facebook"
-              href="#"
-              target="_blank"
-            >
+            <a class="nav-link" title="Like us on Facebook" href="#" target="_blank">
               <i class="zmdi zmdi-facebook"></i>
               <p class="d-lg-none d-xl-none">Facebook</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a
-              class="nav-link btn btn-primary btn-round"
-              routerLink="/patientlogin"
-              href="javascript:void();"
-              (click)="toggleNavbar()"
-              >SIGN IN</a
-            >
+            <a class="nav-link btn btn-primary btn-round" routerLink="/patientlogin" href="javascript:void();" (click)="toggleNavbar()">SIGN IN</a>
           </li>
         </ul>
       </div>
@@ -56,10 +41,7 @@
 
   <!-- End Navbar -->
   <div class="page-header">
-    <div
-      class="page-header-image"
-      style="background-image:url(assets/images/login.jpg)"
-    ></div>
+    <div class="page-header-image" style="background-image:url(assets/images/login.jpg)"></div>
     <div class="container">
       <div class="col-md-12 content-center">
         <div class="card-plain">
@@ -73,124 +55,75 @@
             </div>
             <div class="content">
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="First Name"
-                  formControlName="firstName"
-                  name="name"
-                />
+                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" name="name" />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-account-circle"></i>
                 </span>
               </div>
-              <div
-                class="error"
-                *ngIf="
+              <div class="error" *ngIf="
                   SignUpForm.controls.firstName.invalid &&
                   (SignUpForm.controls.firstName.touched ||
                     SignUpForm.controls.firstName.dirty)
-                "
-                for="name"
-              >
+                " for="name">
                 This field is required.
               </div>
 
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Middle Name"
-                  formControlName="middleName"
-                />
+                <input type="text" class="form-control" placeholder="Middle Name" formControlName="middleName" />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-account-circle"></i>
                 </span>
               </div>
 
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Last Name"
-                  formControlName="lastName"
-                  name="lastName"
-                />
+                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" name="lastName" />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-account-circle"></i>
                 </span>
               </div>
-              <div
-                class="error"
-                *ngIf="
+              <div class="error" *ngIf="
                   SignUpForm.controls.lastName.invalid &&
                   (SignUpForm.controls.lastName.touched ||
                     SignUpForm.controls.lastName.dirty)
-                "
-                for="lastname"
-              >
+                " for="lastname">
                 This field is required.
               </div>
 
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter Email"
-                  name="email"
-                  formControlName="email"
-                  pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                <input type="text" class="form-control" placeholder="Enter Email" name="email" formControlName="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
                 />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-email"></i>
                 </span>
               </div>
-              <div
-                class="error"
-                *ngIf="
+              <div class="error" *ngIf="
                   (SignUpForm.controls.email.dirty ||
                     SignUpForm.controls.email.touched) &&
                   !SignUpForm.controls.email.valid
-                "
-                for="email"
-              >
+                " for="email">
                 *Required in correct format
               </div>
 
               <div class="input-group">
                 <span class="input-group-addon"> +1 &nbsp;</span>
-                <input
-                  type="text"
-                  class="form-control br0"
-                  placeholder="Enter Mobile No."
-                  formControlName="mobileNo"
-                  maxlength="10"
-                  pattern="\d*"
+                <input type="text" class="form-control br0" placeholder="Enter Mobile No." formControlName="mobileNo" maxlength="10" pattern="\d*"
                 />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-phone"></i>
                 </span>
               </div>
 
-              <div
-                class="error"
-                *ngIf="
+              <div class="error" *ngIf="
                   SignUpForm.controls.mobileNo.value != '' &&
                   SignUpForm.controls.mobileNo.invalid &&
                   (SignUpForm.controls.mobileNo.touched ||
                     SignUpForm.controls.mobileNo.dirty)
-                "
-              >
+                ">
                 *Invalid
               </div>
 
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter Address"
-                  formControlName="address"
-                />
+                <input type="text" class="form-control" placeholder="Enter city/state" formControlName="address" />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-pin-drop"></i>
                 </span>
@@ -200,69 +133,44 @@
                                       <textarea rows="2" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
                                   </div>-->
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control br0"
-                  placeholder="Enter Zip Code"
-                  formControlName="pinNo"
-                />
+                <input type="text" class="form-control br0" placeholder="Enter Zip Code" formControlName="pinNo" />
               </div>
               <div class="input-group">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  class="form-control"
-                  name="password"
-                  formControlName="password"
-                />
+                <input type="password" placeholder="Password" class="form-control" name="password" formControlName="password" />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-lock"></i>
                 </span>
               </div>
 
-              <div
-                class="error"
-                *ngIf="
+              <div class="error" *ngIf="
                   (SignUpForm.controls.password.dirty ||
                     SignUpForm.controls.password.touched) &&
                   !SignUpForm.controls.password.valid
-                "
-              >
+                ">
                 <small>*Required</small>
               </div>
 
               <div class="input-group">
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  class="form-control"
-                  formControlName="confirmPassword"
-                />
+                <input type="password" placeholder="Confirm Password" class="form-control" formControlName="confirmPassword" />
                 <span class="input-group-addon">
                   <i class="zmdi zmdi-lock"></i>
                 </span>
               </div>
 
-              <div
-                class="error"
-                *ngIf="
+              <div class="error" *ngIf="
                   SignUpForm.controls.password.value !=
                     SignUpForm.controls.confirmPassword.value &&
                   (SignUpForm.controls.confirmPassword.touched ||
                     SignUpForm.controls.confirmPassword.dirty)
-                "
-              >
+                ">
                 <small>**must match with password</small>
               </div>
 
-              <div
-                class="error"
-                *ngIf="
+              <div class="error" *ngIf="
                   !SignUpForm.controls.confirmPassword.valid &&
                   (SignUpForm.controls.confirmPassword.touched ||
                     SignUpForm.controls.confirmPassword.dirty)
-                "
-              >
+                ">
                 <small>*Required</small>
               </div>
             </div>
@@ -274,19 +182,9 @@
               </label>
             </div>
             <div class="footer text-center">
-              <a
-                href="javascript:void();"
-                class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light"
-                (click)="signUp()"
-                >SIGN UP</a
-              >
+              <a href="javascript:void();" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light" (click)="signUp()">SIGN UP</a>
               <h6 class="m-t-20">
-                <a
-                  class="link"
-                  href="javascript:void();"
-                  routerLink="/patientlogin"
-                  >You already have a membership?</a
-                >
+                <a class="link" href="javascript:void();" routerLink="/patientlogin">You already have a membership?</a>
               </h6>
             </div>
           </form>
@@ -301,7 +199,7 @@
   <script src="assets/bundles/vendorscripts.bundle.js"></script>
   <!-- Lib Scripts Plugin Js -->
   <script>
-    $(".navbar-toggler").on("click", function() {
+    $(".navbar-toggler").on("click", function () {
       $("html").toggleClass("nav-open");
     });
   </script>

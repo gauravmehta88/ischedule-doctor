@@ -60,6 +60,11 @@ import { EditCoupenComponent } from './edit-coupen/edit-coupen.component';
 import { TodayAppointmentComponent } from './today-appointment/today-appointment.component';
 import { AllAppointmentsComponent } from './all-appointments/all-appointments.component';
 import { AllBillsComponent } from './all-bills/all-bills.component';
+import { SubscriptionPlanComponent } from './subscription-plan/subscription-plan.component';
+import { MySubscriptionPlanComponent } from './my-subscription-plan/my-subscription-plan.component';
+import { PaySubscriptionComponent } from './pay-subscription/pay-subscription.component';
+import { NgxStripeModule } from 'ngx-stripe';
+import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 
 
 const config: SocketIoConfig = { url: 'http://api.Ischedulenow.com/ ', options: {} };
@@ -98,6 +103,10 @@ const config: SocketIoConfig = { url: 'http://api.Ischedulenow.com/ ', options: 
     TodayAppointmentComponent,
     AllAppointmentsComponent,
     AllBillsComponent,
+    SubscriptionPlanComponent,
+    MySubscriptionPlanComponent,
+    PaySubscriptionComponent,
+    ViewAllStaffComponent,
   ],
   imports: [
     HttpModule,
@@ -109,7 +118,9 @@ const config: SocketIoConfig = { url: 'http://api.Ischedulenow.com/ ', options: 
     BsDatepickerModule,
     TimepickerModule,
     ToasterModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    NgxStripeModule.forRoot("pk_test_51HuAkZCbXi3plYezlGPSbYKulBljXuobMJZ1XrpgzUNFa4j9YqQkkjjG26EqlmkJK8IZCCaeJHUQV7MnL7BYxHPe00THCEOiuw")
+
 
   ],
   providers: [CookieService]

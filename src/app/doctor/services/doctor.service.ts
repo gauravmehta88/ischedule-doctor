@@ -432,6 +432,34 @@ export class DoctorService {
             }));
     }
 
+    addStaff(staff) {
+        let id = this.cookieService.getItem("_id");
+        let headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", this.cookieService.getItem("Token"));
+        return this.http
+            .post(
+            environment.baseURL + "api/doctor/" + id + "/addNewSubAccount",
+            staff,
+            {
+                headers: headers
+            }
+            )
+            .pipe(map(res => res.json()))
+
+            .pipe(catchError(e => {
+                if (e.status === 401) {
+                    this.router.navigate(['/login'])
+                    console.log("UnAuth");
+                }
+                if (e.ok == false) {
+                    return "1";
+                }
+                return [];
+            }));
+    }
+
 
     addPatientPrescription(data) {
         let id = this.cookieService.getItem("_id");
@@ -830,6 +858,35 @@ export class DoctorService {
     }
 
 
+    getPatientInvoices(patientId) {
+        let id = this.cookieService.getItem("_id");
+        let headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", this.cookieService.getItem("Token"));
+        return this.http
+            .get(
+            environment.baseURL + "api/doctor/" + id + "/patientInvoice/" + patientId,
+
+            {
+                headers: headers
+            }
+            )
+            .pipe(map(res => res.json()))
+
+            .pipe(catchError(e => {
+                if (e.status === 401) {
+                    this.router.navigate(['/login'])
+                    console.log("UnAuth");
+                }
+                if (e.ok == false) {
+                    return "1";
+                }
+                return [];
+            }));
+    }
+
+
     getCoupenCategories() {
         let id = this.cookieService.getItem("_id");
         let headers = new Headers();
@@ -1148,6 +1205,138 @@ export class DoctorService {
                 return [];
             }));
     }
+
+    getAllStaff() {
+        let id = this.cookieService.getItem("_id");
+        let headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", this.cookieService.getItem("Token"));
+
+        return this.http
+            .get(environment.baseURL + "api/doctor/" + id + "/subAccounts", {
+                headers: headers
+            })
+            .pipe(map(res => res.json()))
+
+            .pipe(catchError(e => {
+                if (e.status === 401) {
+                    this.router.navigate(['/login'])
+                    console.log("UnAuth");
+                }
+                if (e.ok == false) {
+                    return "1";
+                }
+                return [];
+            }));
+    }
+    deleteStaff(accoutId) {
+        let id = this.cookieService.getItem("_id");
+        let headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", this.cookieService.getItem("Token"));
+
+        return this.http
+            .delete(environment.baseURL + "api/doctor/" + id + "/subAccount/" + accoutId, {
+                headers: headers
+            })
+            .pipe(map(res => res.json()))
+
+            .pipe(catchError(e => {
+                if (e.status === 401) {
+                    this.router.navigate(['/login'])
+                    console.log("UnAuth");
+                }
+                if (e.ok == false) {
+                    return "1";
+                }
+                return [];
+            }));
+    }
+    getAllPlans() {
+        let id = this.cookieService.getItem("_id");
+        let headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", this.cookieService.getItem("Token"));
+
+        return this.http
+            .get(environment.baseURL + "api/plans/", {
+                headers: headers
+            })
+            .pipe(map(res => res.json()))
+
+            .pipe(catchError(e => {
+                if (e.status === 401) {
+                    this.router.navigate(['/login'])
+                    console.log("UnAuth");
+                }
+                if (e.ok == false) {
+                    return "1";
+                }
+                return [];
+            }));
+    }
+
+    getMyPlans() {
+        let id = this.cookieService.getItem("_id");
+        let headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", this.cookieService.getItem("Token"));
+
+        return this.http
+            .get(environment.baseURL + "api/doctor/" + id + "/subscription", {
+                headers: headers
+            })
+            .pipe(map(res => res.json()))
+
+            .pipe(catchError(e => {
+                if (e.status === 401) {
+                    this.router.navigate(['/login'])
+                    console.log("UnAuth");
+                }
+                if (e.ok == false) {
+                    return "1";
+                }
+                return [];
+            }));
+    }
+
+    subscribe(data, planId) {
+
+        let doctorId = this.cookieService.getItem("_id");
+        let headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", this.cookieService.getItem("Token"));
+        return this.http
+            .put(
+            environment.baseURL + "api/doctor/" + doctorId + "/subscribe/" + planId, data,
+
+            {
+                headers: headers
+            }
+            )
+            .pipe(map(res => res.json()))
+
+            .pipe(catchError(e => {
+                if (e.status === 401) {
+                    this.router.navigate(['/login'])
+                    console.log("UnAuth");
+                }
+                if (e.ok == false) {
+                    return "1";
+                }
+                return [];
+            }));
+
+
+    }
+
+
+
 
 
     getAllInvoices() {

@@ -51,6 +51,22 @@
                 ">
                 * password required
               </div>
+
+              <div class="input-group input-lg">
+                <input type="password" placeholder="*******" class="form-control" formControlName="password" />
+                <span class="input-group-addon">
+                  <i class="zmdi zmdi-lock"></i>
+                </span>
+              </div>
+
+              <div class="input-group input-lg">
+
+                <label class="mb-0 mt-2">Login as</label>
+                <select class="" placeholder="Select Role" formControlName="role" id="drpdown">
+                  <option value="Doctor">Doctor</option>
+                  <option value="Staff">Staff</option>
+                </select>
+              </div>
             </div>
             <div class="footer text-center">
               <a href="javascript:void();" (click)="signIn()" class="btn l-cyan btn-round btn-lg btn-block waves-effect waves-light">SIGN IN</a>
